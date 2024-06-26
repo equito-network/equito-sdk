@@ -9,6 +9,7 @@
     "type": "git",
     "url": "https://github.com/equito-network/equito-sdk.git"
   },
+  "type": "module",
   "exports": {
     ".": {
       "require": {

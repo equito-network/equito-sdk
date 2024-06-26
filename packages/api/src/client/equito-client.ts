@@ -1,7 +1,7 @@
 import { ApiPromise, WsProvider } from "@polkadot/api";
 
 import { getProof } from "./get-proof";
-import { Hex } from "@equito-sdk/core";
+import { type Hex } from "@equito-sdk/core";
 
 type EquitoClientCreateParams = {
   wsProvider: string;

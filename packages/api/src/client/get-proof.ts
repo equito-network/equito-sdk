@@ -1,4 +1,4 @@
-import { Hex } from "@equito-sdk/core";
+import { type Hex } from "@equito-sdk/core";
 
 export const getProof = (signatures: Hex[]): Hex =>
   signatures.reduce<Hex>(

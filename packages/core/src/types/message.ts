@@ -1,4 +1,4 @@
-import { Hex } from "./misc";
+import { type Hex } from "./misc";
 
 export type EquitoAddress = {
   lower: Hex;

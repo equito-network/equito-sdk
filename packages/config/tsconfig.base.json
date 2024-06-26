@@ -1,13 +1,20 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "target": "es2016",
-    "module": "commonjs",
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
     "skipLibCheck": true,
+    "target": "ES2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "strict": true,
     "noUncheckedIndexedAccess": true,
-    "noEmit": true
+    "module": "CommonJS",
+    "outDir": "dist",
+    "sourceMap": true,
+
+    "lib": ["ES2022"],
+    "declaration": true,
+    "declarationMap": true
   }
 }
