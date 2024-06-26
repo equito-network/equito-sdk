@@ -1,0 +1,41 @@
+{
+  "name": "@equito-sdk/api",
+  "version": "0.0.1",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.mjs",
+  "repository": {
+    "directory": "packages/api",
+    "type": "git",
+    "url": "https://github.com/equito-network/equito-sdk.git"
+  },
+  "exports": {
+    ".": {
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "lint": "tsc"
+  },
+  "devDependencies": {
+    "@equito-sdk/config": "workspace:*",
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.2"
+  },
+  "dependencies": {
+    "@equito-sdk/core": "workspace:*",
+    "@polkadot/api": "^12.0.1"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ]
+}
