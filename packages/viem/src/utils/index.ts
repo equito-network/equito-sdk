@@ -1,9 +1,9 @@
 import { EquitoMessage, Hex } from "@equito-sdk/core";
-import { keccakAsHex } from "@polkadot/util-crypto";
-import { parseAbiParameters, encodeAbiParameters } from "viem";
+import { encodeAbiParameters, keccak256, parseAbiParameters } from "viem";
+
 
 export const generateHash = (message: EquitoMessage): Hex =>
-  keccakAsHex(
+  keccak256(
     encodeAbiParameters(
       parseAbiParameters(
         "uint256, uint256, bytes32, bytes32, uint256, bytes32, bytes32, bytes32"
@@ -20,3 +20,4 @@ export const generateHash = (message: EquitoMessage): Hex =>
       ]
     )
   );
+

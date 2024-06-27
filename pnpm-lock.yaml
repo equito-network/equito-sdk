@@ -42,13 +42,25 @@ importers:
         version: 5.5.2
 
   packages/evm:
+    devDependencies:
+      '@equito-sdk/config':
+        specifier: workspace:*
+        version: link:../config
+      tsup:
+        specifier: ^8.1.0
+        version: 8.1.0(typescript@5.5.2)
+      typescript:
+        specifier: ^5.5.2
+        version: 5.5.2
+
+  packages/viem:
     dependencies:
       '@equito-sdk/core':
         specifier: workspace:*
         version: link:../core
-      '@polkadot/util-crypto':
-        specifier: ^12.6.2
-        version: 12.6.2(@polkadot/util@12.6.2)
+      '@equito-sdk/evm':
+        specifier: workspace:*
+        version: link:../evm
       viem:
         specifier: ^2.16.2
         version: 2.16.2(typescript@5.5.2)
