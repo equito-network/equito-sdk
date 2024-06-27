@@ -55,12 +55,12 @@ importers:
 
   packages/viem:
     dependencies:
+      '@equito-sdk/core':
+        specifier: workspace:*
+        version: link:../core
       '@equito-sdk/evm':
         specifier: workspace:*
         version: link:../evm
-      '@polkadot/util-crypto':
-        specifier: ^12.6.2
-        version: 12.6.2(@polkadot/util@12.6.2)
       viem:
         specifier: ^2.16.2
         version: 2.16.2(typescript@5.5.2)

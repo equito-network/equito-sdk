@@ -32,9 +32,9 @@
     "typescript": "^5.5.2"
   },
   "dependencies": {
+    "@equito-sdk/core": "workspace:*",
     "@equito-sdk/evm": "workspace:*",
-    "viem": "^2.16.2",
-    "@polkadot/util-crypto": "^12.6.2"
+    "viem": "^2.16.2"
   },
   "files": [
     "dist",
