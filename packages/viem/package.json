@@ -1,11 +1,11 @@
 {
-  "name": "@equito-sdk/evm",
+  "name": "@equito-sdk/viem",
   "version": "0.0.1",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.mjs",
   "repository": {
-    "directory": "packages/evm",
+    "directory": "packages/viem",
     "type": "git",
     "url": "https://github.com/equito-network/equito-sdk.git"
   },
@@ -31,7 +31,11 @@
     "tsup": "^8.1.0",
     "typescript": "^5.5.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@equito-sdk/evm": "workspace:*",
+    "viem": "^2.16.2",
+    "@polkadot/util-crypto": "^12.6.2"
+  },
   "files": [
     "dist",
     "README.md"
