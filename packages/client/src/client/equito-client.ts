@@ -4,7 +4,7 @@ import { type Hex } from "@equito-sdk/core";
 import {
   EquitoClientCreateConfig,
   EquitoEvent,
-  GetProofTimestampArgs,
+  GetConfirmationTimeArgs,
   ListenForSignaturesArgs,
 } from "./equito-client.types";
 import { runtime } from "./runtime";
@@ -187,15 +187,15 @@ export class EquitoClient {
   /**
    * Returns the timestamp of a proof for a specific message hash, chain selector, and block number.
    *
-   * @param {GetProofTimestampArgs} args - {@link GetProofTimestampArgs}
+   * @param {GetConfirmationTimeArgs} args - {@link GetConfirmationTimeArgs}
    * @returns {number} The timestamp of the proof.
    */
-  async getProofTimestamp({
+  async getConfirmationTime({
     messageHash,
     chainSelector,
     fromTimestamp,
     listenTimeout = 5,
-  }: GetProofTimestampArgs): Promise<number> {
+  }: GetConfirmationTimeArgs): Promise<number> {
     const latestSignedBlock = await this.api.rpc.chain.getBlock();
     const latestBlockNumber = Number(latestSignedBlock.block.header.number);
 

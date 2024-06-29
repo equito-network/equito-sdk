@@ -30,7 +30,7 @@ export type ListenForSignaturesArgs = {
   onError?: (error: unknown) => void;
 };
 
-export type GetProofTimestampArgs = {
+export type GetConfirmationTimeArgs = {
   messageHash: Hex;
   chainSelector: number;
   fromTimestamp?: number;
