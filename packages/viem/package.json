@@ -23,17 +23,22 @@
     }
   },
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "lint": "tsc"
+    "clean": "rm -rf ./dist",
+    "build": "pnpm clean && tsup src/index.ts --format cjs,esm --dts",
+    "lint": "tsc --noEmit",
+    "prepack": "pnpm build",
+    "docs": "typedoc src/index.ts --options typedoc.config.json --tsconfig tsconfig.json"
   },
   "devDependencies": {
     "@equito-sdk/config": "workspace:*",
     "tsup": "^8.1.0",
+    "typedoc": "^0.26.3",
     "typescript": "^5.5.2"
   },
   "dependencies": {
     "@equito-sdk/core": "workspace:*",
     "@equito-sdk/evm": "workspace:*",
+    "abitype": "^1.0.5",
     "viem": "^2.16.2"
   },
   "files": [

@@ -1,0 +1,1 @@
+export const ESTIMATED_BLOCK_TIME = 6000;
