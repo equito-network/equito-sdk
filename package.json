@@ -4,6 +4,8 @@
   "scripts": {
     "build": "pnpm -r build",
     "clean": "pnpm -r clean",
-    "lint": "pnpm -r lint"
+    "lint": "pnpm -r lint",
+    "prepack": "pnpm -r prepack",
+    "docs:gen": "pnpm -r docs:gen"
   }
 }

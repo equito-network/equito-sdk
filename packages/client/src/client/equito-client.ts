@@ -20,8 +20,8 @@ export class EquitoClient {
   ) {}
 
   /**
-   * @name EquitoClient
-   * @description Create a new instance of {@link EquitoClient}.
+   * Create a new instance of {@link EquitoClient}.
+   *
    * An EquitoClient instance is a wrapper around the Polkadot API that provides
    * methods to interact with the Equito node.
    *
@@ -56,8 +56,8 @@ export class EquitoClient {
   }
 
   /**
-   * @name getApiAt
-   * @description Returns the API instance at a specific block number.
+   * Returns the API instance at a specific block number.
+   *
    * @param {number} blockNumber If provided, the API instance will be created at the block number.
    * @returns {ApiPromise} The API instance at the block number.
    */
@@ -68,8 +68,8 @@ export class EquitoClient {
   }
 
   /**
-   * @name getRouter
-   * @description Returns the router contract address for a given chain selector.
+   * Returns the router contract address for a given chain selector.
+   *
    * @param {number} chainSelector The chain selector for which to get the router contract address.
    * @returns {Hex} The router contract address.
    */
@@ -85,8 +85,8 @@ export class EquitoClient {
   }
 
   /**
-   * @name getNextValidators
-   * @description Returns the list of validators for the next session.
+   * Returns the list of validators for the next session.
+   *
    * @returns {Hex[]} The list of validators.
    */
   async getNextValidators(): Promise<Hex[]> {
@@ -96,8 +96,8 @@ export class EquitoClient {
   }
 
   /**
-   * @name getValidators
-   * @description Returns the list of validators for a specific chain and block number.
+   * Returns the list of validators for a specific chain and block number.
+   *
    * @param {number} chainSelector The chain selector for which to get the validators.
    * @param {number} blockNumber The block number at which to get the validators.
    * @returns {Hex[]} The list of validators.
@@ -111,8 +111,8 @@ export class EquitoClient {
   }
 
   /**
-   * @name getSignatures
-   * @description Returns the list of signatures for a specific message hash, chain selector, and block number.
+   * Returns the list of signatures for a specific message hash, chain selector, and block number.
+   *
    * @param {Hex} messageHash The message hash for which to get the signatures.
    * @param {number} chainSelector The chain selector for which to get the signatures.
    * @param {number} blockNumber The block number at which to get the signatures.
@@ -133,8 +133,8 @@ export class EquitoClient {
   }
 
   /**
-   * @name getProof
-   * @description Returns the proof for a specific message hash, chain selector, and block number.
+   * Returns the proof for a specific message hash, chain selector, and block number.
+   *
    * @param {Hex} messageHash The message hash for which to get the proof.
    * @param {number} chainSelector The chain selector for which to get the proof.
    * @param {number} blockNumber The block number at which to get the proof.
@@ -163,8 +163,8 @@ export class EquitoClient {
   }
 
   /**
-   * @name getBlockTimestamp
-   * @description Returns the timestamp of a specific block number.
+   * Returns the timestamp of a specific block number.
+   *
    * @param {number} blockNumber The block number for which to get the timestamp.
    * @returns {number} The timestamp of the block.
    */
@@ -185,8 +185,8 @@ export class EquitoClient {
   }
 
   /**
-   * @name getProofTimestamp
-   * @description Returns the timestamp of a proof for a specific message hash, chain selector, and block number.
+   * Returns the timestamp of a proof for a specific message hash, chain selector, and block number.
+   *
    * @param {GetProofTimestampArgs} args - {@link GetProofTimestampArgs}
    * @returns {number} The timestamp of the proof.
    */
@@ -237,8 +237,8 @@ export class EquitoClient {
   }
 
   /**
-   * @name listenForSignatures
-   * @description Listens for signatures for a specific message hash, chain selector, and block number in a specific time frame.
+   * Listens for signatures for a specific message hash, chain selector, and block number in a specific time frame.
+   *
    * @param {ListenForSignaturesArgs} args - {@link ListenForSignaturesArgs}
    * @returns {Promise<void>}
    */

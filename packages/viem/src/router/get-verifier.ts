@@ -2,11 +2,17 @@ import { EquitoAddress, Hex } from "@equito-sdk/core";
 import { routerAbi } from "@equito-sdk/evm";
 import { PublicClient, encodeAbiParameters, parseAbiParameters } from "viem";
 
-type GetVerifierArgs = {
+export type GetVerifierArgs = {
   publicClient: PublicClient;
   routerContract: Hex;
 };
 
+/**
+ * Gets the verifier address.
+ *
+ * @param {GetVerifierArgs} args {@link GetVerifierArgs}
+ * @returns {Promise<EquitoAddress>} The verifier address.
+ */
 export const getVerifier = async ({
   publicClient,
   routerContract,

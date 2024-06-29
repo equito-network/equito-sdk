@@ -27,7 +27,7 @@
     "build": "pnpm clean && tsup src/index.ts --format cjs,esm --dts",
     "lint": "tsc --noEmit",
     "prepack": "pnpm build",
-    "docs": "typedoc src/index.ts --options typedoc.config.json --tsconfig tsconfig.json"
+    "docs:gen": "typedoc --options typedoc.config.json"
   },
   "devDependencies": {
     "@equito-sdk/config": "workspace:*",

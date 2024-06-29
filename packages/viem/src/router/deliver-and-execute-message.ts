@@ -3,7 +3,10 @@ import { routerAbi } from "@equito-sdk/evm";
 import { Account, WalletClient } from "viem";
 import { Chain } from "viem/chains";
 
-type DeliverAndExecuteMessageArgs = {
+export type DeliverAndExecuteMessageArgs = {
+  /**
+   * The wallet client {@link WalletClient}.
+   */
   walletClient: WalletClient;
   account: Account;
   chain: Chain;
@@ -15,8 +18,14 @@ type DeliverAndExecuteMessageArgs = {
   verifierIndex: number;
 };
 
-type DeliverAndExecuteMessageReturn = Hex;
+export type DeliverAndExecuteMessageReturn = Hex;
 
+/**
+ * Routes a message to a destination chain and executes it.
+ *
+ * @param {DeliverAndExecuteMessageArgs} args {@link DeliverAndExecuteMessageArgs}
+ * @returns {Promise<DeliverAndExecuteMessageReturn>} The transaction hash.
+ */
 export const deliverAndExecuteMessage = async ({
   walletClient,
   chain,

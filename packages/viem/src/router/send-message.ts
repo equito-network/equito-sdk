@@ -4,7 +4,7 @@ import { Account, PublicClient, WalletClient, parseEventLogs } from "viem";
 import { Chain } from "viem/chains";
 import { MessageSendRequestedLog } from "./event.types";
 
-type SendMessageArgs = {
+export type SendMessageArgs = {
   publicClient: PublicClient;
   walletClient: WalletClient;
   account: Account;
@@ -14,8 +14,15 @@ type SendMessageArgs = {
   receiver: EquitoAddress;
   data: Hex;
 };
-type SendMessageReturn = MessageSendRequestedLog["args"];
 
+export type SendMessageReturn = MessageSendRequestedLog["args"];
+
+/**
+ * Sends a message to a destination chain.
+ *
+ * @param {SendMessageArgs} args {@link SendMessageArgs}
+ * @returns {Promise<SendMessageReturn>} The message send request.
+ */
 export const sendMessage = async ({
   chain,
   account,
