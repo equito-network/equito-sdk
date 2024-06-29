@@ -178,7 +178,7 @@ export class EquitoClient {
     )?.args;
 
     if (!timestamp) {
-      throw new Error(`#${timestamp} block timestamp not found`);
+      throw new Error(`Timestamp not found for block ${blockNumber}`);
     }
 
     return Number(timestamp);
