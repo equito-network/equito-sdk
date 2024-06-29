@@ -2,9 +2,9 @@ import { ApiPromise, WsProvider } from "@polkadot/api";
 
 import { type Hex } from "@equito-sdk/core";
 import {
-  EquitoClientCreateArgs,
+  EquitoClientCreateConfig,
   EquitoEvent,
-  GetProofTimestamp,
+  GetProofTimestampArgs,
   ListenForSignaturesArgs,
 } from "./equito-client.types";
 import { runtime } from "./runtime";
@@ -19,10 +19,19 @@ export class EquitoClient {
     private readonly archiverApi: ApiPromise
   ) {}
 
+  /**
+   * @name EquitoClient
+   * @description Create a new instance of {@link EquitoClient}.
+   * An EquitoClient instance is a wrapper around the Polkadot API that provides
+   * methods to interact with the Equito node.
+   *
+   * @param {EquitoClientCreateConfig} config The configuration for creating an EquitoClient.
+   * @returns {EquitoClient} A new instance of EquitoClient.
+   */
   static async create({
     wsProvider,
     archiverWsProvider,
-  }: EquitoClientCreateArgs): Promise<EquitoClient> {
+  }: EquitoClientCreateConfig): Promise<EquitoClient> {
     if (!this.instance) {
       const api = await ApiPromise.create({
         provider: new WsProvider(wsProvider),
@@ -39,21 +48,31 @@ export class EquitoClient {
     return this.instance;
   }
 
-  // todo: chose the right api based on the block number
-  getApi(blockNumber?: number): ApiPromise {
+  private getApi(blockNumber?: number): ApiPromise {
     if (blockNumber !== undefined) {
       return this.archiverApi;
     }
     return this.api;
   }
 
-  // if not specified, get the latest api
+  /**
+   * @name getApiAt
+   * @description Returns the API instance at a specific block number.
+   * @param {number} blockNumber If provided, the API instance will be created at the block number.
+   * @returns {ApiPromise} The API instance at the block number.
+   */
   async getApiAt(blockNumber?: number): Promise<ApiDecoration<"promise">> {
     const api = this.getApi(blockNumber);
     const blockHash = await api.rpc.chain.getBlockHash(blockNumber);
     return await api.at(blockHash);
   }
 
+  /**
+   * @name getRouter
+   * @description Returns the router contract address for a given chain selector.
+   * @param {number} chainSelector The chain selector for which to get the router contract address.
+   * @returns {Hex} The router contract address.
+   */
   async getRouter(chainSelector: number): Promise<Hex> {
     const router = (
       await this.api.query.equitoEVM?.routers?.(chainSelector)
@@ -65,12 +84,24 @@ export class EquitoClient {
     return router;
   }
 
+  /**
+   * @name getNextValidators
+   * @description Returns the list of validators for the next session.
+   * @returns {Hex[]} The list of validators.
+   */
   async getNextValidators(): Promise<Hex[]> {
     return (
       await this.api.query.validatorSet?.validators?.()
     )?.toHuman() as Hex[];
   }
 
+  /**
+   * @name getValidators
+   * @description Returns the list of validators for a specific chain and block number.
+   * @param {number} chainSelector The chain selector for which to get the validators.
+   * @param {number} blockNumber The block number at which to get the validators.
+   * @returns {Hex[]} The list of validators.
+   */
   async getValidators(
     chainSelector: number,
     blockNumber?: number
@@ -79,6 +110,15 @@ export class EquitoClient {
     return (await api.query.session?.validators?.())?.toHuman() as Hex[];
   }
 
+  /**
+   * @name getSignatures
+   * @description Returns the list of signatures for a specific message hash, chain selector, and block number.
+   * @param {Hex} messageHash The message hash for which to get the signatures.
+   * @param {number} chainSelector The chain selector for which to get the signatures.
+   * @param {number} blockNumber The block number at which to get the signatures.
+   *
+   * @returns {Hex[]} The list of signatures.
+   */
   async getSignatures(
     messageHash: Hex,
     chainSelector: number,
@@ -92,6 +132,14 @@ export class EquitoClient {
     return signatures?.map(([, signature]) => signature) || [];
   }
 
+  /**
+   * @name getProof
+   * @description Returns the proof for a specific message hash, chain selector, and block number.
+   * @param {Hex} messageHash The message hash for which to get the proof.
+   * @param {number} chainSelector The chain selector for which to get the proof.
+   * @param {number} blockNumber The block number at which to get the proof.
+   * @returns {Hex} The proof for the message.
+   */
   async getProof(
     messageHash: Hex,
     chainSelector: number,
@@ -114,6 +162,12 @@ export class EquitoClient {
     );
   }
 
+  /**
+   * @name getBlockTimestamp
+   * @description Returns the timestamp of a specific block number.
+   * @param {number} blockNumber The block number for which to get the timestamp.
+   * @returns {number} The timestamp of the block.
+   */
   async getBlockTimestamp(blockNumber: number): Promise<number> {
     const api = this.getApi(blockNumber);
     const blockHash = await api.rpc.chain.getBlockHash(blockNumber);
@@ -130,12 +184,18 @@ export class EquitoClient {
     return Number(timestamp);
   }
 
+  /**
+   * @name getProofTimestamp
+   * @description Returns the timestamp of a proof for a specific message hash, chain selector, and block number.
+   * @param {GetProofTimestampArgs} args - {@link GetProofTimestampArgs}
+   * @returns {number} The timestamp of the proof.
+   */
   async getProofTimestamp({
     messageHash,
     chainSelector,
     fromTimestamp,
     listenTimeout = 5,
-  }: GetProofTimestamp): Promise<number> {
+  }: GetProofTimestampArgs): Promise<number> {
     const latestSignedBlock = await this.api.rpc.chain.getBlock();
     const latestBlockNumber = Number(latestSignedBlock.block.header.number);
 
@@ -176,9 +236,16 @@ export class EquitoClient {
     return timestamp;
   }
 
+  /**
+   * @name listenForSignatures
+   * @description Listens for signatures for a specific message hash, chain selector, and block number in a specific time frame.
+   * @param {ListenForSignaturesArgs} args - {@link ListenForSignaturesArgs}
+   * @returns {Promise<void>}
+   */
   async listenForSignatures({
     messageHash,
     chainSelector,
+    listenTimeout = 10,
     onConfirm,
     onError,
   }: ListenForSignaturesArgs): Promise<void> {
@@ -267,7 +334,7 @@ export class EquitoClient {
               unsubHeads();
             }
 
-            if (countHeads > 20) {
+            if (countHeads > listenTimeout) {
               throw new Error("Timeout listening for signatures");
             }
           } catch (error) {

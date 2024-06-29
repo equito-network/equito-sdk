@@ -1,7 +1,16 @@
 import { Hex } from "@equito-sdk/core";
 
-export type EquitoClientCreateArgs = {
+/**
+ * EquitoClientCreateConfig is the configuration object for creating an EquitoClient.
+ */
+export type EquitoClientCreateConfig = {
+  /**
+   * The endpoint of the Equito node.
+   */
   wsProvider: string;
+  /**
+   * The endpoint of the Equito archiver node.
+   */
   archiverWsProvider: string;
 };
 
@@ -16,11 +25,12 @@ export type EquitoEvent = {
 export type ListenForSignaturesArgs = {
   messageHash: Hex;
   chainSelector: number;
+  listenTimeout?: number;
   onConfirm: (args: { proof: Hex; timestamp: number }) => Promise<void>;
   onError?: (error: unknown) => void;
 };
 
-export type GetProofTimestamp = {
+export type GetProofTimestampArgs = {
   messageHash: Hex;
   chainSelector: number;
   fromTimestamp?: number;
