@@ -1,1 +1,0 @@
-window.navigationData = "data:application/octet-stream;base64,H4sIAAAAAAAAE4uuVipJrShRslJyLSzNLMl3TEkpSi0uVtJRKkgsyQAKl1QWpBbro0jqZZTk5gBVZGfmpShZGRlYmhuaGtXqoJnkC1SZmJ6K3SSoJCGTPFIr0PUDhbDrigUAPU5xtcsAAAA="
