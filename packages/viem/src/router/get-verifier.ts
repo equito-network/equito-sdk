@@ -10,6 +10,9 @@ export type GetVerifierArgs = {
    * The public client that will be used to read the contract.
    */
   publicClient: PublicClient;
+  /**
+   * The router contract in {@link Hex} format.
+   */
   routerContract: Hex;
 };
 
