@@ -1,11 +1,11 @@
 {
-  "name": "@equito-sdk/api",
+  "name": "@equito-sdk/client",
   "version": "0.0.1",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.mjs",
   "repository": {
-    "directory": "packages/api",
+    "directory": "packages/client",
     "type": "git",
     "url": "https://github.com/equito-network/equito-sdk.git"
   },
@@ -23,12 +23,16 @@
     }
   },
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "lint": "tsc"
+    "clean": "rm -rf ./dist",
+    "build": "pnpm clean && tsup src/index.ts --format cjs,esm --dts",
+    "lint": "tsc --noEmit",
+    "prepack": "pnpm build",
+    "docs:gen": "typedoc --options typedoc.config.json"
   },
   "devDependencies": {
     "@equito-sdk/config": "workspace:*",
     "tsup": "^8.1.0",
+    "typedoc": "^0.26.3",
     "typescript": "^5.5.2"
   },
   "dependencies": {
