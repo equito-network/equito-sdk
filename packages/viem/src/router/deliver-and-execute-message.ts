@@ -3,18 +3,45 @@ import { routerAbi } from "@equito-sdk/evm";
 import { Account, WalletClient } from "viem";
 import { Chain } from "viem/chains";
 
+/**
+ * The arguments for the deliverAndExecuteMessage function.
+ */
 export type DeliverAndExecuteMessageArgs = {
   /**
-   * The wallet client {@link WalletClient}.
+   * The {@link WalletClient} that will be used to write the contract.
    */
   walletClient: WalletClient;
+  /**
+   * The {@link Account} that will be used to sign the transaction.
+   */
   account: Account;
+  /**
+   * The {@link Chain} that the message will be routed from.
+   */
   chain: Chain;
+  /**
+   * The destination chain selector that the message will be routed to.
+   */
   destinationChainSelector: number;
+  /**
+   * The router contract in {@link Hex} format.
+   */
   routerContract: Hex;
+  /**
+   * The {@link EquitoMessage} that will be routed.
+   */
   message: EquitoMessage;
+  /**
+   * The message data in {@link Hex} format.
+   */
   messageData: Hex;
+  /**
+   * The message proof in {@link Hex} format.
+   */
   proof: Hex;
+  /**
+   * The verifier index.
+   */
   verifierIndex: number;
 };
 
@@ -39,8 +66,8 @@ export const deliverAndExecuteMessage = async ({
   const txHash = await walletClient.writeContract({
     address: routerContract,
     abi: routerAbi,
-    functionName: "deliverAndExecuteMessages",
-    args: [[message], [messageData], BigInt(verifierIndex), proof],
+    functionName: "deliverAndExecuteMessage",
+    args: [message, messageData, BigInt(verifierIndex), proof],
     account,
     chain,
   });
