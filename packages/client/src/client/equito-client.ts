@@ -339,8 +339,8 @@ export class EquitoClient {
               throw new Error("Timeout listening for signatures");
             }
           } catch (error) {
+            unsubHeads();
             if (onError) {
-              unsubHeads();
               onError(error);
             } else {
               throw error;
