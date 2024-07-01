@@ -52,12 +52,12 @@ export const routerAbi = [
   },
   {
     type: "function",
-    name: "deliverAndExecuteMessages",
+    name: "deliverAndExecuteMessage",
     inputs: [
       {
-        name: "messages",
-        type: "tuple[]",
-        internalType: "struct EquitoMessage[]",
+        name: "message",
+        type: "tuple",
+        internalType: "struct EquitoMessage",
         components: [
           {
             name: "blockNumber",
@@ -117,8 +117,8 @@ export const routerAbi = [
       },
       {
         name: "messageData",
-        type: "bytes[]",
-        internalType: "bytes[]",
+        type: "bytes",
+        internalType: "bytes",
       },
       {
         name: "verifierIndex",
@@ -132,7 +132,7 @@ export const routerAbi = [
       },
     ],
     outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "payable",
   },
   {
     type: "function",
@@ -246,12 +246,12 @@ export const routerAbi = [
   },
   {
     type: "function",
-    name: "executeMessages",
+    name: "executeMessage",
     inputs: [
       {
-        name: "messages",
-        type: "tuple[]",
-        internalType: "struct EquitoMessage[]",
+        name: "message",
+        type: "tuple",
+        internalType: "struct EquitoMessage",
         components: [
           {
             name: "blockNumber",
@@ -311,12 +311,12 @@ export const routerAbi = [
       },
       {
         name: "messageData",
-        type: "bytes[]",
-        internalType: "bytes[]",
+        type: "bytes",
+        internalType: "bytes",
       },
     ],
     outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "payable",
   },
   {
     type: "function",
@@ -428,7 +428,7 @@ export const routerAbi = [
       },
     ],
     outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "payable",
   },
   {
     type: "function",
@@ -647,19 +647,19 @@ export const routerAbi = [
   },
   {
     type: "error",
-    name: "InvalidNewVerifierProof",
+    name: "InvalidOperation",
+    inputs: [],
+  },
+  {
+    type: "error",
+    name: "InvalidRouter",
     inputs: [
       {
-        name: "verifier",
+        name: "router",
         type: "address",
         internalType: "address",
       },
     ],
-  },
-  {
-    type: "error",
-    name: "InvalidOperation",
-    inputs: [],
   },
   {
     type: "error",
