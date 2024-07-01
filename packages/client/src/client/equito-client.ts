@@ -138,28 +138,26 @@ export class EquitoClient {
    * @param {Hex} messageHash The message hash for which to get the proof.
    * @param {number} chainSelector The chain selector for which to get the proof.
    * @param {number} blockNumber The block number at which to get the proof.
-   * @returns {Hex} The proof for the message.
+   * @returns {Hex | undefined} If exists, The proof for the message in {@link Hex} format.
    */
   async getProof(
     messageHash: Hex,
     chainSelector: number,
     blockNumber?: number
-  ): Promise<Hex> {
+  ): Promise<Hex | undefined> {
     const signatures = await this.getSignatures(
       messageHash,
       chainSelector,
       blockNumber
     );
     const validators = await this.getValidators(chainSelector, blockNumber);
-    if (signatures.length * 100 < validators.length * 70) {
-      throw new Error(`Not enough signatures for message ${messageHash}`);
+    if (signatures.length * 100 >= validators.length * 70) {
+      return signatures.reduce<Hex>(
+        (acc, curr) =>
+          !curr ? acc : ((acc + curr.split("0x").slice(-1)) as Hex),
+        "0x"
+      );
     }
-
-    return signatures.reduce<Hex>(
-      (acc, curr) =>
-        !curr ? acc : ((acc + curr.split("0x").slice(-1)) as Hex),
-      "0x"
-    );
   }
 
   /**
@@ -209,18 +207,21 @@ export class EquitoClient {
       }
     }
 
-    let timestamp: number;
+    let timestamp: number | undefined = undefined;
     let checkedBlocks = 0;
     do {
-      try {
-        await this.getProof(messageHash, chainSelector, blockNumber);
+      const proof = await this.getProof(
+        messageHash,
+        chainSelector,
+        blockNumber
+      );
+      if (proof) {
         timestamp = await this.getBlockTimestamp(blockNumber);
-      } finally {
-        checkedBlocks++;
       }
+      checkedBlocks++;
     } while (!timestamp && checkedBlocks < listenTimeout);
 
-    if (checkedBlocks >= listenTimeout) {
+    if (checkedBlocks >= listenTimeout || !timestamp) {
       throw new Error(
         `No proof found for message ${messageHash} from timestamp ${fromTimestamp} in the last ${listenTimeout} blocks`
       );
@@ -319,6 +320,13 @@ export class EquitoClient {
             // check if we have enough signatures
             if (signatures.length * 100 >= validators?.length * 70) {
               const proof = await this.getProof(messageHash, chainSelector);
+
+              if (!proof) {
+                throw new Error(
+                  `No proof found for message ${messageHash} in the last ${listenTimeout} blocks`
+                );
+              }
+
               const maxTimestamp = signatures.reduce(
                 (acc, { timestamp }) => (acc > timestamp ? acc : timestamp),
                 0
