@@ -168,7 +168,7 @@ export class EquitoClient {
    */
   async getBlockTimestamp(blockNumber: number): Promise<number> {
     const api = await this.getApiAt(blockNumber);
-    const timestamp = api.query.timestamp?.now?.();
+    const timestamp = (await api.query.timestamp?.now?.())?.toHuman();
     if (!timestamp) {
       throw new Error(`Timestamp not found for block ${blockNumber}`);
     }
