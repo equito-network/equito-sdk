@@ -60,7 +60,7 @@ export type ListenForSignaturesArgs = {
      */
     proof: Hex;
     /**
-     * The signature in {@link Hex} format.
+     * The timestamp in milliseconds of the confirmation.
      */
     timestamp: number;
   }) => Promise<void>;
@@ -83,7 +83,7 @@ export type GetConfirmationTimeArgs = {
    */
   chainSelector: number;
   /**
-   * The timestamp to start searching from.
+   * The timestamp in milliseconds to start searching from.
    */
   fromTimestamp?: number;
   /**

@@ -56,10 +56,11 @@ export class EquitoClient {
   }
 
   /**
-   * Returns the API instance at a specific block number.
+   * Returns the API instance at a specific block number, if specified.
+   * Otherwise, returns the API instance at the latest finalized block.
    *
    * @param {number} blockNumber If provided, the API instance will be created at the block number.
-   * @returns {ApiPromise} The API instance at the block number.
+   * @returns {ApiDecoration<"promise">} The API instance at the block number.
    */
   async getApiAt(blockNumber?: number): Promise<ApiDecoration<"promise">> {
     const api = this.getApi(blockNumber);
@@ -161,10 +162,10 @@ export class EquitoClient {
   }
 
   /**
-   * Returns the timestamp of a specific block number.
+   * Returns the timestamp in milliseconds of a specific block number.
    *
    * @param {number} blockNumber The block number for which to get the timestamp.
-   * @returns {number} The timestamp of the block.
+   * @returns {number} The timestamp in milliseconds of the block.
    */
   async getBlockTimestamp(blockNumber: number): Promise<number> {
     const api = await this.getApiAt(blockNumber);
@@ -176,10 +177,10 @@ export class EquitoClient {
   }
 
   /**
-   * Returns the timestamp of a proof for a specific message hash, chain selector, and block number.
+   * Returns the timestamp in milliseconds of a proof for a specific message hash, chain selector, and block number.
    *
    * @param {GetConfirmationTimeArgs} args - {@link GetConfirmationTimeArgs}
-   * @returns {number} The timestamp of the proof.
+   * @returns {number} The timestamp in milliseconds of the proof.
    */
   async getConfirmationTime({
     messageHash,
