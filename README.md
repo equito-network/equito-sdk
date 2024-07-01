@@ -1,0 +1,14 @@
+# Equito SDK
+
+Equito is a cutting-edge cross-chain messaging protocol designed to facilitate seamless, secure, and efficient communication across diverse blockchain networks. As a gateway for interoperability, Equito empowers developers to extend the functionality of decentralized applications (dApps) beyond the constraints of single blockchains.
+
+This repository provides the Equito TypeScript SDK, a comprehensive toolkit that enables developers to build front-end applications that interact with Equito and the blockchain networks that it supports.  
+The SDK includes a set of APIs that allow developers to deliver and execute messages across different blockchains, as well as to query the status of messages and transactions, and generate proofs for message delivery.
+
+## Key Components
+
+- **@equito/core**, which contains the core types for Equito Messages.
+- **@equito/client**, which provides a client to communicate with the Equito Network, a Substrate-based blockchain that serves as the backbone of the Equito protocol. The client allows developers to query message status and generate message proofs to deliver messages to the appropriate destination network.
+- **@equito/evm**, which contains the core types and ABI to interact with EVM (Ethereum Virtual Machine) compatible blockchains that integrate with Equito.
+- **@equito/viem**, which provides a high-level API to interact with the Equito Network and EVM-compatible blockchains using [viem](https://viem.sh/), a popular lightweight TypeScript library for building Ethereum-compatible applications.
+- **@equito/ethers** 🚧 work in progress 🚧.
