@@ -22,7 +22,7 @@ export class EquitoClient {
   /**
    * Create a new instance of {@link EquitoClient}.
    *
-   * An EquitoClient instance is a wrapper around the Polkadot API that provides
+   * An EquitoClient instance is a wrapper around the Substrate API that provides
    * methods to interact with the Equito node.
    *
    * @param {EquitoClientCreateConfig} config The configuration for creating an EquitoClient.
