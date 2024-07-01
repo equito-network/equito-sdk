@@ -3,7 +3,7 @@ import { ApiPromise, WsProvider } from "@polkadot/api";
 import { type Hex } from "@equito-sdk/core";
 import {
   EquitoClientCreateConfig,
-  EquitoEvent,
+  SubmitSignatureEvent,
   GetConfirmationTimeArgs,
   ListenForSignaturesArgs,
 } from "./equito-client.types";
@@ -169,18 +169,11 @@ export class EquitoClient {
    * @returns {number} The timestamp of the block.
    */
   async getBlockTimestamp(blockNumber: number): Promise<number> {
-    const api = this.getApi(blockNumber);
-    const blockHash = await api.rpc.chain.getBlockHash(blockNumber);
-    const signedBlock = await api.rpc.chain.getBlock(blockHash);
-    const timestamp = signedBlock.block.extrinsics.find(
-      ({ method: { section, method } }) =>
-        section === "timestamp" && method === "set"
-    )?.args;
-
+    const api = await this.getApiAt(blockNumber);
+    const timestamp = api.query.timestamp?.now?.();
     if (!timestamp) {
       throw new Error(`Timestamp not found for block ${blockNumber}`);
     }
-
     return Number(timestamp);
   }
 
@@ -280,7 +273,7 @@ export class EquitoClient {
             const apiAt = await this.api.at(lastHeader.hash);
             const allRecords = (
               await apiAt.query.system?.events?.()
-            )?.toHuman() as EquitoEvent[];
+            )?.toHuman() as SubmitSignatureEvent[];
 
             const signaturesInBlock = signedBlock.block.extrinsics.flatMap(
               (_, index) => {

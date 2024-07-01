@@ -1,7 +1,7 @@
 import { Hex } from "@equito-sdk/core";
 
 /**
- * EquitoClientCreateConfig is the configuration object for creating an EquitoClient.
+ * The configuration object for creating an EquitoClient.
  */
 export type EquitoClientCreateConfig = {
   /**
@@ -14,25 +14,80 @@ export type EquitoClientCreateConfig = {
   archiverWsProvider: string;
 };
 
-export type EquitoEvent = {
+/**
+ * The event emitted when a signature is submitted.
+ */
+export type SubmitSignatureEvent = {
   phase: { ApplyExtrinsic: string };
   event: {
     method: string;
-    data: { message: Hex; who: Hex };
+    data: {
+      /**
+       * The message hash in {@link Hex} format.
+       */
+      message: Hex;
+      /**
+       * The validator in {@link Hex} format.
+       */
+      who: Hex;
+    };
   };
 };
 
+/**
+ * The arguments for the listenForSignatures function.
+ */
 export type ListenForSignaturesArgs = {
+  /**
+   * The message hash in {@link Hex} format.
+   */
   messageHash: Hex;
+  /**
+   * The chain selector.
+   */
   chainSelector: number;
+  /**
+   * The number of blocks to search.
+   */
   listenTimeout?: number;
-  onConfirm: (args: { proof: Hex; timestamp: number }) => Promise<void>;
+  /**
+   * The callback function to call when a signature is submitted.
+   * @param args The arguments for the callback function.
+   */
+  onConfirm: (args: {
+    /**
+     * The message proof in {@link Hex} format.
+     */
+    proof: Hex;
+    /**
+     * The signature in {@link Hex} format.
+     */
+    timestamp: number;
+  }) => Promise<void>;
+  /**
+   * The callback function to call when a there's an error.
+   */
   onError?: (error: unknown) => void;
 };
 
+/**
+ * The arguments for the getConfirmationTime function.
+ */
 export type GetConfirmationTimeArgs = {
+  /**
+   * The message hash in {@link Hex} format.
+   */
   messageHash: Hex;
+  /**
+   * The chain selector.
+   */
   chainSelector: number;
+  /**
+   * The timestamp to start searching from.
+   */
   fromTimestamp?: number;
+  /**
+   * The number of blocks to search.
+   */
   listenTimeout?: number;
 };
