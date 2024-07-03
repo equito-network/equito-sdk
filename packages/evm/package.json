@@ -34,7 +34,6 @@
     "docs:gen": "typedoc --options typedoc.config.json"
   },
   "devDependencies": {
-    "@equito-sdk/config": "workspace:*",
     "tsup": "^8.1.0",
     "typedoc": "^0.26.3",
     "typescript": "^5.5.2"

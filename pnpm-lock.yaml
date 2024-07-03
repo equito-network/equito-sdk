@@ -20,9 +20,6 @@ importers:
         specifier: ^12.0.1
         version: 12.0.1
     devDependencies:
-      '@equito-sdk/config':
-        specifier: workspace:*
-        version: link:../config
       tsup:
         specifier: ^8.1.0
         version: 8.1.0(typescript@5.5.2)
@@ -33,13 +30,8 @@ importers:
         specifier: ^5.5.2
         version: 5.5.2
 
-  packages/config: {}
-
   packages/core:
     devDependencies:
-      '@equito-sdk/config':
-        specifier: workspace:*
-        version: link:../config
       tsup:
         specifier: ^8.1.0
         version: 8.1.0(typescript@5.5.2)
@@ -52,9 +44,6 @@ importers:
 
   packages/evm:
     devDependencies:
-      '@equito-sdk/config':
-        specifier: workspace:*
-        version: link:../config
       tsup:
         specifier: ^8.1.0
         version: 8.1.0(typescript@5.5.2)
@@ -80,9 +69,6 @@ importers:
         specifier: ^2.16.2
         version: 2.16.2(typescript@5.5.2)
     devDependencies:
-      '@equito-sdk/config':
-        specifier: workspace:*
-        version: link:../config
       tsup:
         specifier: ^8.1.0
         version: 8.1.0(typescript@5.5.2)
