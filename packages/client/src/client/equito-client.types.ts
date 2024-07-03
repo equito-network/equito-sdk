@@ -9,9 +9,9 @@ export type EquitoClientCreateConfig = {
    */
   wsProvider: string;
   /**
-   * The endpoint of the Equito archiver node.
+   * The endpoint of the Equito archive node.
    */
-  archiverWsProvider: string;
+  archiveWsProvider: string;
 };
 
 /**

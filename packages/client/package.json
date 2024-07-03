@@ -37,7 +37,8 @@
   },
   "dependencies": {
     "@equito-sdk/core": "workspace:*",
-    "@polkadot/api": "^12.0.1"
+    "@polkadot/api": "^12.0.1",
+    "@polkadot/api-augment": "^12.0.1"
   },
   "files": [
     "dist",

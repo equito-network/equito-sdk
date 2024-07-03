@@ -16,7 +16,7 @@ export class EquitoClient {
 
   private constructor(
     private readonly api: ApiPromise,
-    private readonly archiverApi: ApiPromise
+    private readonly archiveApi: ApiPromise
   ) {}
 
   /**
@@ -30,19 +30,19 @@ export class EquitoClient {
    */
   static async create({
     wsProvider,
-    archiverWsProvider,
+    archiveWsProvider,
   }: EquitoClientCreateConfig): Promise<EquitoClient> {
     if (!this.instance) {
       const api = await ApiPromise.create({
         provider: new WsProvider(wsProvider),
         runtime,
       });
-      const archiverApi = await ApiPromise.create({
-        provider: new WsProvider(archiverWsProvider),
+      const archiveApi = await ApiPromise.create({
+        provider: new WsProvider(archiveWsProvider),
         runtime,
       });
 
-      this.instance = new EquitoClient(api, archiverApi);
+      this.instance = new EquitoClient(api, archiveApi);
     }
 
     return this.instance;
@@ -50,7 +50,7 @@ export class EquitoClient {
 
   private getApi(blockNumber?: number): ApiPromise {
     if (blockNumber !== undefined) {
-      return this.archiverApi;
+      return this.archiveApi;
     }
     return this.api;
   }
@@ -76,7 +76,7 @@ export class EquitoClient {
    */
   async getRouter(chainSelector: number): Promise<Hex> {
     const router = (
-      await this.api.query.equitoEVM?.routers?.(chainSelector)
+      await this.api.query.equitoEvm?.routers?.(chainSelector)
     )?.toHex();
     if (!router || router == "0x0000000000000000000000000000000000000000") {
       throw new Error(`Router contract not found for chain ${chainSelector}`);
@@ -126,7 +126,7 @@ export class EquitoClient {
     blockNumber?: number
   ): Promise<Hex[]> {
     const api = await this.getApiAt(blockNumber);
-    const signatures = await api.query.equitoEVM?.signatures?.entries<Hex>(
+    const signatures = await api.query.equitoEvm?.signatures?.entries<Hex>(
       messageHash
     );
 
@@ -139,7 +139,7 @@ export class EquitoClient {
    * @param {Hex} messageHash The message hash for which to get the proof.
    * @param {number} chainSelector The chain selector for which to get the proof.
    * @param {number} blockNumber The block number at which to get the proof.
-   * @returns {Hex | undefined} If exists, The proof for the message in {@link Hex} format.
+   * @returns {Hex | undefined} If exists, the proof for the message in {@link Hex} format.
    */
   async getProof(
     messageHash: Hex,
