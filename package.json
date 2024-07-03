@@ -13,6 +13,11 @@
     "clean": "pnpm -r clean",
     "lint": "pnpm -r lint",
     "prepack": "pnpm -r prepack",
-    "docs:gen": "pnpm -r docs:gen"
+    "docs:gen": "pnpm -r docs:gen",
+    "typedoc": "typedoc"
+  },
+  "dependencies": {
+    "typedoc": "^0.26.3",
+    "typescript": "^5.5.2"
   }
 }

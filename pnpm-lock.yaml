@@ -6,7 +6,14 @@ settings:
 
 importers:
 
-  .: {}
+  .:
+    dependencies:
+      typedoc:
+        specifier: ^0.26.3
+        version: 0.26.3(typescript@5.5.2)
+      typescript:
+        specifier: ^5.5.2
+        version: 5.5.2
 
   packages/client:
     dependencies:

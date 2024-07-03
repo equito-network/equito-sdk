@@ -1,0 +1,7 @@
+{
+    "logLevel": "Verbose",
+    "entryPoints": ["packages/*"],
+    "name": "Equito SDK",
+    "entryPointStrategy": "packages",
+    "includeVersion": false
+}
