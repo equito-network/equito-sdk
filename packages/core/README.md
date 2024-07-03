@@ -1,3 +1,3 @@
-# @equito-sdk/api
+# @equito-sdk/core
 
-The Equito API provides easy-to-use wrappers around JSONRPC calls that flow from an application to a equito node.
+Core types for Equito SDK.

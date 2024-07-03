@@ -1,6 +1,13 @@
 {
-  "name": "equito-sdk",
+  "author": "Equito Network",
   "version": "0.0.1",
+  "homepage": "https://github.com/equito-network/equito-sdk#readme",
+  "bugs": "https://github.com/equito-network/equito-sdk/issues",
+  "packageManager": "^pnpm@9.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
+
   "scripts": {
     "build": "pnpm -r build",
     "clean": "pnpm -r clean",
