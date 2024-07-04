@@ -3,5 +3,16 @@
     "entryPoints": ["packages/*"],
     "name": "Equito SDK",
     "entryPointStrategy": "packages",
-    "includeVersion": false
+    "includeVersion": false,
+
+    "navigationLinks": {
+        "GitHub": "https://github.com/equito-network"
+    },
+
+    "customCss": "./assets/style.css",
+    "customFooterHtml": "© 2024 <strong>Equito Network</strong>. All rights reserved.",
+
+    "plugin": [
+        "typedoc-plugin-extras"
+    ]
 }

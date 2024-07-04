@@ -7,17 +7,16 @@
   "workspaces": [
     "packages/*"
   ],
-
   "scripts": {
     "build": "pnpm -r build",
     "clean": "pnpm -r clean",
     "lint": "pnpm -r lint",
     "prepack": "pnpm -r prepack",
-    "docs:gen": "pnpm -r docs:gen",
-    "typedoc": "typedoc"
+    "doc": "typedoc --plugin typedoc-plugin-extras --favicon assets/favicon.ico"
   },
-  "dependencies": {
+  "devDependencies": {
     "typedoc": "^0.26.3",
+    "typedoc-plugin-extras": "^3.1.0",
     "typescript": "^5.5.2"
   }
 }

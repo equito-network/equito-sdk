@@ -30,8 +30,7 @@
     "clean": "rm -rf ./dist",
     "build": "pnpm clean && tsup src/index.ts --format cjs,esm --dts",
     "lint": "tsc --noEmit",
-    "prepack": "pnpm build",
-    "docs:gen": "typedoc --options typedoc.config.json"
+    "prepack": "pnpm build"
   },
   "devDependencies": {
     "tsup": "^8.1.0",
