@@ -11,9 +11,9 @@ importers:
       typedoc:
         specifier: ^0.26.3
         version: 0.26.3(typescript@5.5.2)
-      typedoc-plugin-extras:
-        specifier: ^3.1.0
-        version: 3.1.0(typedoc@0.26.3(typescript@5.5.2))
+      typedoc-plugin-markdown:
+        specifier: ^4.1.1
+        version: 4.1.1(typedoc@0.26.3(typescript@5.5.2))
       typescript:
         specifier: ^5.5.2
         version: 5.5.2
@@ -1069,8 +1069,9 @@ packages:
       typescript:
         optional: true
 
-  typedoc-plugin-extras@3.1.0:
-    resolution: {integrity: sha512-8tNeq2fgl2HCUZ6eZuAoLLKEvB/WrRS4He9MtTfo3X3Pa8Iw3TS5D0g8krDhUXUk1uHpXVAVHm8rSOMS2mdJRw==}
+  typedoc-plugin-markdown@4.1.1:
+    resolution: {integrity: sha512-ZQv8FXn1TBZAvhWMgOL8hE472rwv1dzSr/KIIUGPmdNXybeS6jmK7d1OwKhorLuGbPDQGl6U97BwfkFTcydAkw==}
+    engines: {node: '>= 18'}
     peerDependencies:
       typedoc: 0.26.x
 
@@ -2164,7 +2165,7 @@ snapshots:
       - supports-color
       - ts-node
 
-  typedoc-plugin-extras@3.1.0(typedoc@0.26.3(typescript@5.5.2)):
+  typedoc-plugin-markdown@4.1.1(typedoc@0.26.3(typescript@5.5.2)):
     dependencies:
       typedoc: 0.26.3(typescript@5.5.2)
 

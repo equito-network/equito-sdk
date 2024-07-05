@@ -7,8 +7,8 @@ The SDK includes a set of APIs that allow developers to deliver and execute mess
 
 ## Key Components
 
-- **@equito-sdk/core**, which contains the core types for Equito Messages.
-- **@equito-sdk/client**, which provides a client to communicate with the Equito Network, a Substrate-based blockchain that serves as the backbone of the Equito protocol. The client allows developers to query message status and generate message proofs to deliver messages to the appropriate destination network.
-- **@equito-sdk/evm**, which contains the core types and ABI to interact with EVM (Ethereum Virtual Machine) compatible blockchains that integrate with Equito.
-- **@equito-sdk/viem**, which provides a high-level API to interact with the Equito Network and EVM-compatible blockchains using [viem](https://viem.sh/), a popular lightweight TypeScript library for building Ethereum-compatible applications.
+- [**@equito-sdk/core**](packages/core/README.md), which contains the core types for Equito Messages.
+- [**@equito-sdk/client**](packages/client/README.md), which provides a client to communicate with the Equito Network, a Substrate-based blockchain that serves as the backbone of the Equito protocol. The client allows developers to query message status and generate message proofs to deliver messages to the appropriate destination network.
+- [**@equito-sdk/evm**](packages/evm/README.md), which contains the core types and ABI to interact with EVM (Ethereum Virtual Machine) compatible blockchains that integrate with Equito.
+- [**@equito-sdk/viem**](packages/viem/README.md), which provides a high-level API to interact with the Equito Network and EVM-compatible blockchains using [viem](https://viem.sh/), a popular lightweight TypeScript library for building Ethereum-compatible applications.
 - **@equito-sdk/ethers** 🚧 work in progress 🚧.
