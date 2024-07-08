@@ -1,6 +1,6 @@
 {
   "name": "@equito-sdk/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Equito Network",
   "description": "Core types for Equito SDK.",
   "homepage": "https://github.com/equito-network/equito-sdk/tree/main/packages/core#readme",
