@@ -6,6 +6,7 @@ import {
   SubmitSignatureEvent,
   GetConfirmationTimeArgs,
   ListenForSignaturesArgs,
+  GetConfirmationTimeReturnType,
 } from "./equito-client.types";
 import { runtime } from "./runtime";
 import { ESTIMATED_BLOCK_TIME } from "../constants";
@@ -180,14 +181,14 @@ export class EquitoClient {
    * Returns the timestamp in milliseconds of a proof for a specific message hash, chain selector, and block number.
    *
    * @param {GetConfirmationTimeArgs} args - {@link GetConfirmationTimeArgs}
-   * @returns {number} The timestamp in milliseconds of the proof.
+   * @returns {GetConfirmationTimeReturnType} - {@link GetConfirmationTimeReturnType}
    */
   async getConfirmationTime({
     messageHash,
     chainSelector,
     fromTimestamp,
-    listenTimeout = 5,
-  }: GetConfirmationTimeArgs): Promise<number> {
+    listenTimeout = 10,
+  }: GetConfirmationTimeArgs): Promise<GetConfirmationTimeReturnType> {
     const latestSignedBlock = await this.api.rpc.chain.getBlock();
     const latestBlockNumber = Number(latestSignedBlock.block.header.number);
 
@@ -208,27 +209,22 @@ export class EquitoClient {
       }
     }
 
-    let timestamp: number | undefined = undefined;
+    let proof: Hex | undefined;
     let checkedBlocks = 0;
     do {
-      const proof = await this.getProof(
-        messageHash,
-        chainSelector,
-        blockNumber
-      );
-      if (proof) {
-        timestamp = await this.getBlockTimestamp(blockNumber);
-      }
+      proof = await this.getProof(messageHash, chainSelector, blockNumber);
       checkedBlocks++;
-    } while (!timestamp && checkedBlocks < listenTimeout);
+    } while (!proof && checkedBlocks < listenTimeout);
 
-    if (checkedBlocks >= listenTimeout || !timestamp) {
+    if (checkedBlocks >= listenTimeout || !proof) {
       throw new Error(
         `No proof found for message ${messageHash} from timestamp ${fromTimestamp} in the last ${listenTimeout} blocks`
       );
     }
 
-    return timestamp;
+    const timestamp = await this.getBlockTimestamp(blockNumber);
+
+    return { proof, timestamp };
   }
 
   /**

@@ -91,3 +91,17 @@ export type GetConfirmationTimeArgs = {
    */
   listenTimeout?: number;
 };
+
+/**
+ * The return type of the getConfirmationTime function.
+ */
+export type GetConfirmationTimeReturnType = {
+  /**
+   * The timestamp in milliseconds of the confirmation.
+   */
+  timestamp: number;
+  /**
+   * The message proof in {@link Hex} format.
+   */
+  proof: Hex;
+};
