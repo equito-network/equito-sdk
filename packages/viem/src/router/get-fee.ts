@@ -4,7 +4,7 @@ import { Hex, PublicClient } from "viem";
 /**
  * The arguments for the getFee function.
  */
-type GetFeeArgs = {
+export type GetFeeArgs = {
   /**
    * The {@link PublicClient} that will be used to read the contract.
    */

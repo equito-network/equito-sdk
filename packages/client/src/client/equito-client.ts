@@ -6,6 +6,7 @@ import {
   SubmitSignatureEvent,
   GetConfirmationTimeArgs,
   ListenForSignaturesArgs,
+  GetConfirmationTimeReturnType,
 } from "./equito-client.types";
 import { runtime } from "./runtime";
 import { ESTIMATED_BLOCK_TIME } from "../constants";
@@ -126,11 +127,11 @@ export class EquitoClient {
     blockNumber?: number
   ): Promise<Hex[]> {
     const api = await this.getApiAt(blockNumber);
-    const signatures = await api.query.equitoEvm?.signatures?.entries<Hex>(
+    const signatures = await api.query.equitoEvm?.signatures?.entries(
       messageHash
     );
 
-    return signatures?.map(([, signature]) => signature) || [];
+    return signatures?.map(([, signature]) => signature.toHex()) || [];
   }
 
   /**
@@ -169,7 +170,10 @@ export class EquitoClient {
    */
   async getBlockTimestamp(blockNumber: number): Promise<number> {
     const api = await this.getApiAt(blockNumber);
-    const timestamp = (await api.query.timestamp?.now?.())?.toHuman();
+    const timestamp = (await api.query.timestamp?.now?.())
+      ?.toHuman()
+      ?.toString()
+      .replaceAll(",", "");
     if (!timestamp) {
       throw new Error(`Timestamp not found for block ${blockNumber}`);
     }
@@ -180,14 +184,14 @@ export class EquitoClient {
    * Returns the timestamp in milliseconds of a proof for a specific message hash, chain selector, and block number.
    *
    * @param {GetConfirmationTimeArgs} args - {@link GetConfirmationTimeArgs}
-   * @returns {number} The timestamp in milliseconds of the proof.
+   * @returns {GetConfirmationTimeReturnType} - {@link GetConfirmationTimeReturnType}
    */
   async getConfirmationTime({
     messageHash,
     chainSelector,
     fromTimestamp,
-    listenTimeout = 5,
-  }: GetConfirmationTimeArgs): Promise<number> {
+    listenTimeout = 10,
+  }: GetConfirmationTimeArgs): Promise<GetConfirmationTimeReturnType> {
     const latestSignedBlock = await this.api.rpc.chain.getBlock();
     const latestBlockNumber = Number(latestSignedBlock.block.header.number);
 
@@ -208,27 +212,22 @@ export class EquitoClient {
       }
     }
 
-    let timestamp: number | undefined = undefined;
-    let checkedBlocks = 0;
+    let proof: Hex | undefined;
+    const blockNumberLimit = blockNumber + listenTimeout;
     do {
-      const proof = await this.getProof(
-        messageHash,
-        chainSelector,
-        blockNumber
-      );
-      if (proof) {
-        timestamp = await this.getBlockTimestamp(blockNumber);
-      }
-      checkedBlocks++;
-    } while (!timestamp && checkedBlocks < listenTimeout);
+      proof = await this.getProof(messageHash, chainSelector, blockNumber);
+      blockNumber++;
+    } while (!proof && blockNumber < blockNumberLimit);
 
-    if (checkedBlocks >= listenTimeout || !timestamp) {
+    if (blockNumber >= blockNumberLimit || !proof) {
       throw new Error(
         `No proof found for message ${messageHash} from timestamp ${fromTimestamp} in the last ${listenTimeout} blocks`
       );
     }
 
-    return timestamp;
+    const timestamp = await this.getBlockTimestamp(blockNumber);
+
+    return { proof, timestamp };
   }
 
   /**
