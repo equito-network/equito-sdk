@@ -170,7 +170,10 @@ export class EquitoClient {
    */
   async getBlockTimestamp(blockNumber: number): Promise<number> {
     const api = await this.getApiAt(blockNumber);
-    const timestamp = (await api.query.timestamp?.now?.())?.toHuman();
+    const timestamp = (await api.query.timestamp?.now?.())
+      ?.toHuman()
+      ?.toString()
+      .replaceAll(",", "");
     if (!timestamp) {
       throw new Error(`Timestamp not found for block ${blockNumber}`);
     }
@@ -212,7 +215,11 @@ export class EquitoClient {
     let proof: Hex | undefined;
     let checkedBlocks = 0;
     do {
-      proof = await this.getProof(messageHash, chainSelector, blockNumber);
+      proof = await this.getProof(
+        messageHash,
+        chainSelector,
+        blockNumber + checkedBlocks
+      );
       checkedBlocks++;
     } while (!proof && checkedBlocks < listenTimeout);
 
