@@ -127,11 +127,11 @@ export class EquitoClient {
     blockNumber?: number
   ): Promise<Hex[]> {
     const api = await this.getApiAt(blockNumber);
-    const signatures = await api.query.equitoEvm?.signatures?.entries<Hex>(
+    const signatures = await api.query.equitoEvm?.signatures?.entries(
       messageHash
     );
 
-    return signatures?.map(([, signature]) => signature) || [];
+    return signatures?.map(([, signature]) => signature.toHex()) || [];
   }
 
   /**
