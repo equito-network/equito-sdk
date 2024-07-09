@@ -213,17 +213,13 @@ export class EquitoClient {
     }
 
     let proof: Hex | undefined;
-    let checkedBlocks = 0;
+    const blockNumberLimit = blockNumber + listenTimeout;
     do {
-      proof = await this.getProof(
-        messageHash,
-        chainSelector,
-        blockNumber + checkedBlocks
-      );
-      checkedBlocks++;
-    } while (!proof && checkedBlocks < listenTimeout);
+      proof = await this.getProof(messageHash, chainSelector, blockNumber);
+      blockNumber++;
+    } while (!proof && blockNumber < blockNumberLimit);
 
-    if (checkedBlocks >= listenTimeout || !proof) {
+    if (blockNumber >= blockNumberLimit || !proof) {
       throw new Error(
         `No proof found for message ${messageHash} from timestamp ${fromTimestamp} in the last ${listenTimeout} blocks`
       );
