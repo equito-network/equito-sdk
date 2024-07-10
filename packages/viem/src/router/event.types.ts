@@ -17,3 +17,11 @@ export type MessageDeliveredLog = Log<
   ExtractAbiEvent<typeof routerAbi, "MessageDelivered">,
   undefined
 >;
+
+export type MessageExecutedLog = Log<
+  bigint,
+  number,
+  false,
+  ExtractAbiEvent<typeof routerAbi, "MessageExecuted">,
+  undefined
+>;
