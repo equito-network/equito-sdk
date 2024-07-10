@@ -1,6 +1,6 @@
 {
   "name": "@equito-sdk/viem",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "Equito Network",
   "description": "Send cross-chain messages using Equito on EVM-compatible networks through viem.",
   "homepage": "https://github.com/equito-network/equito-sdk/tree/main/packages/viem#readme",
