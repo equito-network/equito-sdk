@@ -1,6 +1,6 @@
 {
   "author": "Equito Network",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "homepage": "https://github.com/equito-network/equito-sdk#readme",
   "bugs": "https://github.com/equito-network/equito-sdk/issues",
   "packageManager": "pnpm@9.4.0",

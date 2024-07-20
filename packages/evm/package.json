@@ -1,6 +1,6 @@
 {
   "name": "@equito-sdk/evm",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": "Equito Network",
   "description": "Primitives for cross-chain messages using Equito on EVM-compatible networks.",
   "homepage": "https://github.com/equito-network/equito-sdk/tree/main/packages/evm#readme",
