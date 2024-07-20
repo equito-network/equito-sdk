@@ -65,6 +65,9 @@ export class EquitoClient {
    */
   async getApiAt(blockNumber?: number): Promise<ApiDecoration<"promise">> {
     const api = this.getApi(blockNumber);
+    if (!blockNumber) {
+      return api;
+    }
     const blockHash = await api.rpc.chain.getBlockHash(blockNumber);
     return await api.at(blockHash);
   }
