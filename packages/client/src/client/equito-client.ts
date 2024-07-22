@@ -18,7 +18,7 @@ export class EquitoClient {
   private constructor(
     private readonly api: ApiPromise,
     private readonly archiveApi: ApiPromise
-  ) {}
+  ) { }
 
   /**
    * Create a new instance of {@link EquitoClient}.
@@ -193,7 +193,7 @@ export class EquitoClient {
     messageHash,
     chainSelector,
     fromTimestamp,
-    listenTimeout = 10,
+    listenTimeout = 60,
   }: GetConfirmationTimeArgs): Promise<GetConfirmationTimeReturnType> {
     const latestSignedBlock = await this.api.rpc.chain.getBlock();
     const latestBlockNumber = Number(latestSignedBlock.block.header.number);
@@ -206,8 +206,8 @@ export class EquitoClient {
 
       blockNumber = Math.floor(
         Number(latestBlockNumber) -
-          (Number(latestBlockTimestamp) - Number(fromTimestamp)) /
-            Number(ESTIMATED_BLOCK_TIME)
+        (Number(latestBlockTimestamp) - Number(fromTimestamp)) /
+        Number(ESTIMATED_BLOCK_TIME)
       );
 
       if (blockNumber < 0) {
@@ -216,19 +216,53 @@ export class EquitoClient {
     }
 
     let proof: Hex | undefined;
+    let timestamp: number = 0;
     const blockNumberLimit = blockNumber + listenTimeout;
+    const isAllBlocksInPast = blockNumberLimit <= latestBlockNumber;
+    let maxPastBlockNumber;
+    if (isAllBlocksInPast) {
+      maxPastBlockNumber = blockNumberLimit;
+    } else {
+      maxPastBlockNumber = latestBlockNumber;
+    }
+    //  Fetch the proof from past blocks
     do {
       proof = await this.getProof(messageHash, chainSelector, blockNumber);
       blockNumber++;
-    } while (!proof && blockNumber < blockNumberLimit);
+    } while (!proof && blockNumber <= maxPastBlockNumber);
+
+    while (!proof && !isAllBlocksInPast && blockNumber <= blockNumberLimit) {
+      // previous latest block might not be latest now. Fetch if blocknumber is behind current blockNumber
+      if (blockNumber < Number((await this.api.rpc.chain.getBlock()).block.header.number)) {
+        proof = await this.getProof(messageHash, chainSelector, blockNumber);
+        if (proof) {
+          timestamp = await this.getBlockTimestamp(blockNumber);
+          break;
+        }
+        blockNumber++;
+      } else {
+        // start listening to the future blocks untill blockNumberLimit
+        await this.listenForSignatures({
+          messageHash,
+          chainSelector,
+          listenTimeout: blockNumberLimit - latestBlockNumber,
+          onConfirm: ({ proof: newProof, timestamp }) => {
+            proof = newProof;
+            timestamp = timestamp
+            return Promise.resolve();
+          },
+          onError: (error) => {
+            throw error;
+          }
+        });
+      }
+    }
 
     if (blockNumber >= blockNumberLimit || !proof) {
       throw new Error(
         `No proof found for message ${messageHash} from timestamp ${fromTimestamp} in the last ${listenTimeout} blocks`
       );
     }
-
-    const timestamp = await this.getBlockTimestamp(blockNumber);
 
     return { proof, timestamp };
   }
