@@ -1,6 +1,6 @@
 {
   "name": "@equito-sdk/ethers",
-  "version": "0.1.4",
+  "version": "0.1.3",
   "author": "Equito Network",
   "description": "Send cross-chain messages using Equito on EVM-compatible networks through ethers.",
   "homepage": "https://github.com/equito-network/equito-sdk/tree/main/packages/ethers#readme",
