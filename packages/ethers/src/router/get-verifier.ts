@@ -1,7 +1,7 @@
 import { routerAbi } from "@equito-sdk/evm";
-import { AbstractProvider, Contract } from "ethers";
-import { Hex, EquitoAddress } from "@equito-sdk/core";
-import { AbiCoder, ZeroHash } from "ethers";
+import { AbstractProvider, Contract, AbiCoder } from "ethers";
+import { Hex } from "@equito-sdk/core";
+
 /**
  * The arguments for the getVerifier function.
  */
@@ -24,13 +24,13 @@ export type GetVerifierArgs = {
  * Gets the verifier address.
  *
  * @param {GetVerifierArgs} args {@link GetVerifierArgs}
- * @returns {Promise<EquitoAddress>} The verifier address.
+ * @returns {Promise<Hex>} The verifier address.
  */
 export const getVerifier = async ({
     provider,
     routerContract,
     verifierIndex,
-}: GetVerifierArgs): Promise<EquitoAddress> => {
+}: GetVerifierArgs): Promise<Hex> => {
     const contract = new Contract(routerContract, routerAbi, provider);
     const getVerifierMethod = contract.verifiers as (arg: BigInt) => Promise<Hex>;
 
@@ -40,8 +40,5 @@ export const getVerifier = async ({
 
     const verifier = await getVerifierMethod(BigInt(verifierIndex));
 
-    return {
-        lower: AbiCoder.defaultAbiCoder().encode(["address"], [verifier]) as Hex,
-        upper: ZeroHash as Hex
-    };
+    return AbiCoder.defaultAbiCoder().encode(["address"], [verifier]) as Hex;
 };
