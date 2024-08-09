@@ -1,7 +1,6 @@
 import { routerAbi } from "@equito-sdk/evm";
-import { Contract } from "ethers";
+import { Contract, Wallet } from "ethers";
 import { Hex, EquitoMessage } from "@equito-sdk/core";
-import { Wallet } from "ethers";
 
 /**
  * The arguments for the deliverAndExecuteMessage function.
@@ -35,6 +34,10 @@ export type DeliverAndExecuteMessageArgs = {
      * The verifier index.
      */
     verifierIndex: number;
+    /**
+     * The fee to deliver a message in wei. Defaults to zero if not provided.
+     */
+    fee?: bigint;
 };
 
 export type DeliverAndExecuteMessageReturn = Hex;
@@ -52,26 +55,23 @@ export const deliverAndExecuteMessage = async ({
     messageData,
     proof,
     verifierIndex,
+    fee = 0n,
 }: DeliverAndExecuteMessageArgs): Promise<DeliverAndExecuteMessageReturn> => {
 
     const contract = new Contract(routerContract, routerAbi, wallet);
 
-    const deliverAndExecuteMessageMethod = contract.deliverAndExecuteMessage as (
-        message: EquitoMessage,
-        messageData: Hex,
-        verifierIndex: number,
-        proof: Hex
-    ) => Promise<any>;
-
-    if (!deliverAndExecuteMessageMethod) {
+    if (typeof contract.deliverAndExecuteMessage !== 'function') {
         throw new Error("The deliverAndExecuteMessage method is not defined on the contract");
     }
 
-    const txResponse = await deliverAndExecuteMessageMethod(
+    const txResponse = await contract.deliverAndExecuteMessage(
         message,
         messageData,
         verifierIndex,
-        proof
+        proof,
+        {
+            value: fee,
+        }
     );
 
     const receipt = await txResponse.wait();

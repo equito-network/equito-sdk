@@ -38,7 +38,7 @@ export const getFee = async ({
         throw new Error("The getFee method is not defined on the contract");
     }
 
-    const fee = await getFeeMethod(senderContract);
+    const fee: bigint = await getFeeMethod(senderContract);
 
-    return BigInt(fee.toString());
+    return fee;
 };
