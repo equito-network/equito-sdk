@@ -13,7 +13,7 @@ export const generateHash = (message: EquitoMessage): Hex =>
   keccak256(
     AbiCoder.defaultAbiCoder().encode(
       [
-        "tuple(uint256,uint256,tuple(bytes32 lower,bytes32 upper),uint256,tuple(bytes32 lower,bytes32 upper),bytes32)",
+        "tuple(uint256 blockNumber,uint256 sourceChainSelector,tuple(bytes32 lower,bytes32 upper) sender,uint256 destinationChainSelector,tuple(bytes32 lower,bytes32 upper) receiver,bytes32 hashedData)"
       ],
       [message],
     ),
