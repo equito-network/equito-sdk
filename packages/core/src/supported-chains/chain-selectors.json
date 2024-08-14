@@ -1,0 +1,207 @@
+{
+  "1": {
+    "names": ["ethereum", "eth"],
+    "image": "images/ethereum.svg"
+  },
+  "2": {
+    "names": ["bsc", "bnb"],
+    "image": "images/bsc.svg"
+  },
+  "3": {
+    "names": ["polygon"],
+    "image": "images/polygon.svg"
+  },
+  "4": {
+    "names": ["arbitrum"],
+    "image": "images/arbitrum.svg"
+  },
+  "5": {
+    "names": ["avalanche", "avalance c-chain"],
+    "image": "images/avalanche.svg"
+  },
+  "6": {
+    "names": ["optimism", "op"],
+    "image": "images/optimism.svg"
+  },
+  "7": {
+    "names": ["base"],
+    "image": "images/base.svg"
+  },
+  "8": {
+    "names": ["fantom"],
+    "image": "images/fantom.svg"
+  },
+  "9": {
+    "names": ["celo"],
+    "image": "images/celo.svg"
+  },
+  "10": {
+    "names": ["telos"],
+    "image": "images/telos.svg"
+  },
+  "11": {
+    "names": ["arthera"],
+    "image": "images/arthera.svg"
+  },
+  "12": {
+    "names": ["rollux"],
+    "image": "images/rollux.svg"
+  },
+  "13": {
+    "names": ["skale"],
+    "image": "images/skale.svg"
+  },
+  "14": {
+    "names": ["linea"],
+    "image": "images/linea.svg"
+  },
+  "15": {
+    "names": ["oasis emerald"],
+    "image": "images/oasis_emerald.svg"
+  },
+  "16": {
+    "names": ["merlin"],
+    "image": "images/merlin.svg"
+  },
+  "17": {
+    "names": ["sei evm"],
+    "image": "images/sei_evm.svg"
+  },
+  "18": {
+    "names": ["blast"],
+    "image": "images/blast.svg"
+  },
+  "19": {
+    "names": ["gnosis"],
+    "image": "images/gnosis.svg"
+  },
+  "20": {
+    "names": ["scroll"],
+    "image": "images/scroll.svg"
+  },
+  "21": {
+    "names": ["mantle"],
+    "image": "images/mantle.svg"
+  },
+  "22": {
+    "names": ["opbnb"],
+    "image": "images/opbnb.svg"
+  },
+  "23": {
+    "names": ["zk-sync", "zk-sync era", "zksync", "zksync era"],
+    "image": "images/zksync.svg"
+  },
+  "24": {
+    "names": ["xdc"],
+    "image": "images/xdc.svg"
+  },
+  "25": {
+    "names": ["ten"],
+    "image": "images/ten.svg"
+  },
+  "1001": {
+    "names": ["sepolia", "ethereum sepolia", "eth sepolia"],
+    "image": "images/sepolia.svg"
+  },
+  "1002": {
+    "names": ["bsc testnet", "bnb testnet"],
+    "image": "images/bsc-testnet.svg"
+  },
+  "1003": {
+    "names": ["polygon testnet", "polygon amoy"],
+    "image": "images/polygon-testnet.svg"
+  },
+  "1004": {
+    "names": ["arbitrum sepolia"],
+    "image": "images/arbitrum-sepolia.svg"
+  },
+  "1005": {
+    "names": ["avalanche testnet", "avalanche fuji"],
+    "image": "images/avalanche-testnet.svg"
+  },
+  "1006": {
+    "names": ["optimism sepolia", "op sepolia"],
+    "image": "images/optimism-sepolia.svg"
+  },
+  "1007": {
+    "names": ["base sepolia"],
+    "image": "images/base-sepolia.svg"
+  },
+  "1008": {
+    "names": ["fantom testnet"],
+    "image": "images/fantom-testnet.svg"
+  },
+  "1009": {
+    "names": ["celo testnet", "celo alfajores"],
+    "image": "images/celo-testnet.svg"
+  },
+  "1010": {
+    "names": ["telos testnet"],
+    "image": "images/telos-testnet.svg"
+  },
+  "1011": {
+    "names": ["arthera testnet"],
+    "image": "images/arthera-testnet.svg"
+  },
+  "1012": {
+    "names": ["rollux testnet", "rollux tanenbaum"],
+    "image": "images/rollux-testnet.svg"
+  },
+  "1013": {
+    "names": ["skale calypso testnet"],
+    "image": "images/skale-calypso-testnet.svg"
+  },
+  "1014": {
+    "names": ["linea sepolia"],
+    "image": "images/linea-sepolia.svg"
+  },
+  "1015": {
+    "names": ["oasis emerald testnet"],
+    "image": "images/oasis-emerald-testnet.svg"
+  },
+  "1016": {
+    "names": ["merlin testnet"],
+    "image": "images/merlin-testnet.svg"
+  },
+  "1017": {
+    "names": ["sei evm atlantic", "sei evm testnet"],
+    "image": "images/sei-evm-atlantic.svg"
+  },
+  "1018": {
+    "names": ["blast sepolia"],
+    "image": "images/blast-sepolia.svg"
+  },
+  "1019": {
+    "names": ["gnosis chiado", "gnosis testnet"],
+    "image": "images/gnosis_chiado.svg"
+  },
+  "1020": {
+    "names": ["scroll sepolia"],
+    "image": "images/scroll_sepolia.svg"
+  },
+  "1021": {
+    "names": ["mantle sepolia"],
+    "image": "images/mantle_sepolia.svg"
+  },
+  "1022": {
+    "names": ["opbnb testnet"],
+    "image": "images/opbnb_testnet.svg"
+  },
+  "1023": {
+    "names": [
+      "zk-sync sepolia",
+      "zk-sync era sepolia",
+      "zksync sepolia",
+      "zksync era sepolia"
+    ],
+    "image": "images/zksync_sepolia.svg"
+  },
+  "1024": {
+    "names": ["xdc testnet", "xdc apothem"],
+    "image": "images/xdc_testnet.svg"
+  },
+  "1025": {
+    "names": ["ten testnet"],
+    "image": "images/ten_testnet.svg"
+  }
+}
