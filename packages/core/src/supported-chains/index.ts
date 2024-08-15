@@ -1,18 +1,10 @@
-import * as fs from "fs";
-import * as path from "path";
-import * as dotenv from "dotenv";
+import chainSelectorsJson from "./chain-selectors.json";
 
-// Load environment variables from .env file
-dotenv.config({ path: path.join(__dirname, "../.env") });
-
-// Path to the chain-selectors.json file
-const chainSelectorsPath = path.join(__dirname, "chain-selectors.json");
-
-// Read and parse the chain-selectors.json file
-const chainSelectors = JSON.parse(
-    fs.readFileSync(chainSelectorsPath, "utf-8")
-) as Record<string, { names: string[]; image: string }>;
-
+// Assert correct type for chain-selectors.json file
+const chainSelectors = chainSelectorsJson as Record<
+  string,
+  { names: string[]; image: string }
+>;
 /**
  * @title getChainSelectorByName
  * @description Returns the chain selector value for a given chain name.
@@ -74,7 +66,7 @@ export function getAllSupportedChains(): Array<{ chainSelector: number, name: st
  * @returns {string} - The primary name of the chain.
  * @throws {Error} - Throws an error if the chain selector is not found.
  */
-export function getNameByChainSelector(chainSelector: number): string | undefined {
+export function getNameByChainSelector(chainSelector: number): string {
     const chainData = chainSelectors[chainSelector];
 
     if (!chainData || chainData.names.length === 0) {
