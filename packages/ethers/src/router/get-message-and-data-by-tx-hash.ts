@@ -8,7 +8,7 @@ export interface MessageAndData {
 }
 
 /**
- * @title getMessagesByHash
+ * @title getMessagesByTxHash
  * @description Fetches and decodes the `MessageSendRequested` events from a transaction's logs using its hash.
  * @dev This function retrieves the transaction receipt and parses the logs to extract the relevant event data.
  * 
@@ -40,11 +40,11 @@ export interface MessageAndData {
  *         console.error('Error:', error);
  *     });
  */
-export async function getMessagesByHash(
+export async function getMessagesByTxHash(
     provider: AbstractProvider,
     routerContractAddress: string,
     txHash: string
-): Promise<MessageAndData[] | null> {
+): Promise<MessageAndData[]> {
     try {
         const receipt = await provider.getTransactionReceipt(txHash);
         if (!receipt) {
@@ -54,7 +54,7 @@ export async function getMessagesByHash(
         // Filter logs for the router contract address
         const routerLogs = receipt.logs.filter(log => log.address.toLowerCase() === routerContractAddress.toLowerCase());
         if (routerLogs.length === 0) {
-            throw new Error(`No logs found for the contract address: ${routerContractAddress}`);
+            return [];
         }
 
         // Create an Interface instance to decode the logs
@@ -76,7 +76,7 @@ export async function getMessagesByHash(
             }
         }
 
-        return messages.length > 0 ? messages : null;
+        return messages;
 
     } catch (error) {
         throw new Error(`Error fetching or decoding log: ${error}`);
