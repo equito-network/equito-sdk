@@ -27,7 +27,7 @@ import { routerAbi } from "@equito-sdk/evm";
  *     console.error('Failed to decode the log.');
  * }
  */
-function decodeLog_MessageSendRequested(data: string, topics: readonly string[]): { message: EquitoMessage, messageData: string } | null {
+export function decodeLog_MessageSendRequested(data: string, topics: readonly string[]): { message: EquitoMessage, messageData: string } | null {
     let logdata = {
         topics,
         data

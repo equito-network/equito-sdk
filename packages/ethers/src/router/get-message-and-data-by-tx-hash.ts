@@ -33,7 +33,7 @@ import { routerAbi } from "@equito-sdk/evm";
  *         console.error('Error:', error.message);
  *     });
  */
-async function getMessageAndDataByTxHash(provider: AbstractProvider, routerContractAddress: string, txHash: string): Promise<{ message: EquitoMessage, messageData: string } | null> {
+export async function getMessageAndDataByTxHash(provider: AbstractProvider, routerContractAddress: string, txHash: string): Promise<{ message: EquitoMessage, messageData: string } | null> {
     try {
         const receipt = await provider.getTransactionReceipt(txHash);
         if (!receipt) {
