@@ -8,7 +8,7 @@ export interface MessageAndData {
 }
 
 /**
- * @title getMessageAndDataByTxHash
+ * @title getMessagesByHash
  * @description Fetches and decodes the `MessageSendRequested` events from a transaction's logs using its hash.
  * @dev This function retrieves the transaction receipt and parses the logs to extract the relevant event data.
  * 
@@ -40,7 +40,7 @@ export interface MessageAndData {
  *         console.error('Error:', error);
  *     });
  */
-export async function getMessageAndDataByTxHash(
+export async function getMessagesByHash(
     provider: AbstractProvider,
     routerContractAddress: string,
     txHash: string

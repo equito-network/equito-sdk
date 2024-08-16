@@ -10,7 +10,7 @@ import { routerAbi } from "@equito-sdk/evm";
  * @param {string} data - The non-indexed data portion of the log.
  * @param {readonly string[]} topics - The array of topics (indexed parameters) for the log.
  * 
- * @returns {{ message: EquitoMessage, messageData: string } | null} 
+ * @returns {{ message: EquitoMessage, messageData: string } } 
  * - Returns an object containing the decoded `message` and `messageData` if successful, otherwise throws an error.
  * 
  * @throws {Error} 
@@ -27,7 +27,7 @@ import { routerAbi } from "@equito-sdk/evm";
  *     console.error('Failed to decode the log.');
  * }
  */
-export function decodeLog_MessageSendRequested(data: string, topics: readonly string[]): { message: EquitoMessage, messageData: string } | null {
+export function decodeLog_MessageSendRequested(data: string, topics: readonly string[]): { message: EquitoMessage, messageData: string } {
     let logdata = {
         topics,
         data
