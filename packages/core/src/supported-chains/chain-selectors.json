@@ -1,0 +1,157 @@
+{
+  "1": {
+    "names": ["ethereum", "eth"]
+  },
+  "2": {
+    "names": ["bsc", "bnb"]
+  },
+  "3": {
+    "names": ["polygon"]
+  },
+  "4": {
+    "names": ["arbitrum"]
+  },
+  "5": {
+    "names": ["avalanche", "avalance c-chain"]
+  },
+  "6": {
+    "names": ["optimism", "op"]
+  },
+  "7": {
+    "names": ["base"]
+  },
+  "8": {
+    "names": ["fantom"]
+  },
+  "9": {
+    "names": ["celo"]
+  },
+  "10": {
+    "names": ["telos"]
+  },
+  "11": {
+    "names": ["arthera"]
+  },
+  "12": {
+    "names": ["rollux"]
+  },
+  "13": {
+    "names": ["skale"]
+  },
+  "14": {
+    "names": ["linea"]
+  },
+  "15": {
+    "names": ["oasis emerald"]
+  },
+  "16": {
+    "names": ["merlin"]
+  },
+  "17": {
+    "names": ["sei evm"]
+  },
+  "18": {
+    "names": ["blast"]
+  },
+  "19": {
+    "names": ["gnosis"]
+  },
+  "20": {
+    "names": ["scroll"]
+  },
+  "21": {
+    "names": ["mantle"]
+  },
+  "22": {
+    "names": ["opbnb"]
+  },
+  "23": {
+    "names": ["zk-sync", "zk-sync era", "zksync", "zksync era"]
+  },
+  "24": {
+    "names": ["xdc"]
+  },
+  "25": {
+    "names": ["ten"]
+  },
+  "1001": {
+    "names": ["sepolia", "ethereum sepolia", "eth sepolia"]
+  },
+  "1002": {
+    "names": ["bsc testnet", "bnb testnet"]
+  },
+  "1003": {
+    "names": ["polygon testnet", "polygon amoy"]
+  },
+  "1004": {
+    "names": ["arbitrum sepolia"]
+  },
+  "1005": {
+    "names": ["avalanche testnet", "avalanche fuji"]
+  },
+  "1006": {
+    "names": ["optimism sepolia", "op sepolia"]
+  },
+  "1007": {
+    "names": ["base sepolia"]
+  },
+  "1008": {
+    "names": ["fantom testnet"]
+  },
+  "1009": {
+    "names": ["celo testnet", "celo alfajores"]
+  },
+  "1010": {
+    "names": ["telos testnet"]
+  },
+  "1011": {
+    "names": ["arthera testnet"]
+  },
+  "1012": {
+    "names": ["rollux testnet", "rollux tanenbaum"]
+  },
+  "1013": {
+    "names": ["skale calypso testnet"]
+  },
+  "1014": {
+    "names": ["linea sepolia"]
+  },
+  "1015": {
+    "names": ["oasis emerald testnet"]
+  },
+  "1016": {
+    "names": ["merlin testnet"]
+  },
+  "1017": {
+    "names": ["sei evm atlantic", "sei evm testnet"]
+  },
+  "1018": {
+    "names": ["blast sepolia"]
+  },
+  "1019": {
+    "names": ["gnosis chiado", "gnosis testnet"]
+  },
+  "1020": {
+    "names": ["scroll sepolia"]
+  },
+  "1021": {
+    "names": ["mantle sepolia"]
+  },
+  "1022": {
+    "names": ["opbnb testnet"]
+  },
+  "1023": {
+    "names": [
+      "zk-sync sepolia",
+      "zk-sync era sepolia",
+      "zksync sepolia",
+      "zksync era sepolia"
+    ]
+  },
+  "1024": {
+    "names": ["xdc testnet", "xdc apothem"]
+  },
+  "1025": {
+    "names": ["ten testnet"]
+  }
+}
