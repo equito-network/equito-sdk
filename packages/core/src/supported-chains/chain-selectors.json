@@ -1,191 +1,144 @@
 {
   "1": {
-    "names": ["ethereum", "eth"],
-    "image": "images/ethereum.svg"
+    "names": ["ethereum", "eth"]
   },
   "2": {
-    "names": ["bsc", "bnb"],
-    "image": "images/bsc.svg"
+    "names": ["bsc", "bnb"]
   },
   "3": {
-    "names": ["polygon"],
-    "image": "images/polygon.svg"
+    "names": ["polygon"]
   },
   "4": {
-    "names": ["arbitrum"],
-    "image": "images/arbitrum.svg"
+    "names": ["arbitrum"]
   },
   "5": {
-    "names": ["avalanche", "avalance c-chain"],
-    "image": "images/avalanche.svg"
+    "names": ["avalanche", "avalance c-chain"]
   },
   "6": {
-    "names": ["optimism", "op"],
-    "image": "images/optimism.svg"
+    "names": ["optimism", "op"]
   },
   "7": {
-    "names": ["base"],
-    "image": "images/base.svg"
+    "names": ["base"]
   },
   "8": {
-    "names": ["fantom"],
-    "image": "images/fantom.svg"
+    "names": ["fantom"]
   },
   "9": {
-    "names": ["celo"],
-    "image": "images/celo.svg"
+    "names": ["celo"]
   },
   "10": {
-    "names": ["telos"],
-    "image": "images/telos.svg"
+    "names": ["telos"]
   },
   "11": {
-    "names": ["arthera"],
-    "image": "images/arthera.svg"
+    "names": ["arthera"]
   },
   "12": {
-    "names": ["rollux"],
-    "image": "images/rollux.svg"
+    "names": ["rollux"]
   },
   "13": {
-    "names": ["skale"],
-    "image": "images/skale.svg"
+    "names": ["skale"]
   },
   "14": {
-    "names": ["linea"],
-    "image": "images/linea.svg"
+    "names": ["linea"]
   },
   "15": {
-    "names": ["oasis emerald"],
-    "image": "images/oasis_emerald.svg"
+    "names": ["oasis emerald"]
   },
   "16": {
-    "names": ["merlin"],
-    "image": "images/merlin.svg"
+    "names": ["merlin"]
   },
   "17": {
-    "names": ["sei evm"],
-    "image": "images/sei_evm.svg"
+    "names": ["sei evm"]
   },
   "18": {
-    "names": ["blast"],
-    "image": "images/blast.svg"
+    "names": ["blast"]
   },
   "19": {
-    "names": ["gnosis"],
-    "image": "images/gnosis.svg"
+    "names": ["gnosis"]
   },
   "20": {
-    "names": ["scroll"],
-    "image": "images/scroll.svg"
+    "names": ["scroll"]
   },
   "21": {
-    "names": ["mantle"],
-    "image": "images/mantle.svg"
+    "names": ["mantle"]
   },
   "22": {
-    "names": ["opbnb"],
-    "image": "images/opbnb.svg"
+    "names": ["opbnb"]
   },
   "23": {
-    "names": ["zk-sync", "zk-sync era", "zksync", "zksync era"],
-    "image": "images/zksync.svg"
+    "names": ["zk-sync", "zk-sync era", "zksync", "zksync era"]
   },
   "24": {
-    "names": ["xdc"],
-    "image": "images/xdc.svg"
+    "names": ["xdc"]
   },
   "25": {
-    "names": ["ten"],
-    "image": "images/ten.svg"
+    "names": ["ten"]
   },
   "1001": {
-    "names": ["sepolia", "ethereum sepolia", "eth sepolia"],
-    "image": "images/sepolia.svg"
+    "names": ["sepolia", "ethereum sepolia", "eth sepolia"]
   },
   "1002": {
-    "names": ["bsc testnet", "bnb testnet"],
-    "image": "images/bsc-testnet.svg"
+    "names": ["bsc testnet", "bnb testnet"]
   },
   "1003": {
-    "names": ["polygon testnet", "polygon amoy"],
-    "image": "images/polygon-testnet.svg"
+    "names": ["polygon testnet", "polygon amoy"]
   },
   "1004": {
-    "names": ["arbitrum sepolia"],
-    "image": "images/arbitrum-sepolia.svg"
+    "names": ["arbitrum sepolia"]
   },
   "1005": {
-    "names": ["avalanche testnet", "avalanche fuji"],
-    "image": "images/avalanche-testnet.svg"
+    "names": ["avalanche testnet", "avalanche fuji"]
   },
   "1006": {
-    "names": ["optimism sepolia", "op sepolia"],
-    "image": "images/optimism-sepolia.svg"
+    "names": ["optimism sepolia", "op sepolia"]
   },
   "1007": {
-    "names": ["base sepolia"],
-    "image": "images/base-sepolia.svg"
+    "names": ["base sepolia"]
   },
   "1008": {
-    "names": ["fantom testnet"],
-    "image": "images/fantom-testnet.svg"
+    "names": ["fantom testnet"]
   },
   "1009": {
-    "names": ["celo testnet", "celo alfajores"],
-    "image": "images/celo-testnet.svg"
+    "names": ["celo testnet", "celo alfajores"]
   },
   "1010": {
-    "names": ["telos testnet"],
-    "image": "images/telos-testnet.svg"
+    "names": ["telos testnet"]
   },
   "1011": {
-    "names": ["arthera testnet"],
-    "image": "images/arthera-testnet.svg"
+    "names": ["arthera testnet"]
   },
   "1012": {
-    "names": ["rollux testnet", "rollux tanenbaum"],
-    "image": "images/rollux-testnet.svg"
+    "names": ["rollux testnet", "rollux tanenbaum"]
   },
   "1013": {
-    "names": ["skale calypso testnet"],
-    "image": "images/skale-calypso-testnet.svg"
+    "names": ["skale calypso testnet"]
   },
   "1014": {
-    "names": ["linea sepolia"],
-    "image": "images/linea-sepolia.svg"
+    "names": ["linea sepolia"]
   },
   "1015": {
-    "names": ["oasis emerald testnet"],
-    "image": "images/oasis-emerald-testnet.svg"
+    "names": ["oasis emerald testnet"]
   },
   "1016": {
-    "names": ["merlin testnet"],
-    "image": "images/merlin-testnet.svg"
+    "names": ["merlin testnet"]
   },
   "1017": {
-    "names": ["sei evm atlantic", "sei evm testnet"],
-    "image": "images/sei-evm-atlantic.svg"
+    "names": ["sei evm atlantic", "sei evm testnet"]
   },
   "1018": {
-    "names": ["blast sepolia"],
-    "image": "images/blast-sepolia.svg"
+    "names": ["blast sepolia"]
   },
   "1019": {
-    "names": ["gnosis chiado", "gnosis testnet"],
-    "image": "images/gnosis_chiado.svg"
+    "names": ["gnosis chiado", "gnosis testnet"]
   },
   "1020": {
-    "names": ["scroll sepolia"],
-    "image": "images/scroll_sepolia.svg"
+    "names": ["scroll sepolia"]
   },
   "1021": {
-    "names": ["mantle sepolia"],
-    "image": "images/mantle_sepolia.svg"
+    "names": ["mantle sepolia"]
   },
   "1022": {
-    "names": ["opbnb testnet"],
-    "image": "images/opbnb_testnet.svg"
+    "names": ["opbnb testnet"]
   },
   "1023": {
     "names": [
@@ -193,15 +146,12 @@
       "zk-sync era sepolia",
       "zksync sepolia",
       "zksync era sepolia"
-    ],
-    "image": "images/zksync_sepolia.svg"
+    ]
   },
   "1024": {
-    "names": ["xdc testnet", "xdc apothem"],
-    "image": "images/xdc_testnet.svg"
+    "names": ["xdc testnet", "xdc apothem"]
   },
   "1025": {
-    "names": ["ten testnet"],
-    "image": "images/ten_testnet.svg"
+    "names": ["ten testnet"]
   }
 }

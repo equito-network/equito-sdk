@@ -4,7 +4,7 @@ import { EquitoChain } from "../types";
 // Assert correct type for chain-selectors.json file
 const chainSelectors = chainSelectorsJson as Record<
     string,
-    { names: string[]; image: string }
+    { names: string[]; }
 >;
 /**
  * @title getChainSelectorByName
@@ -48,11 +48,10 @@ export function getChainSelectorByName(name: string): number {
  */
 export function getAllSupportedChains(): EquitoChain[] {
     const supportedChains = [];
-    for (const [selector, { names, image }] of Object.entries(chainSelectors)) {
+    for (const [selector, { names }] of Object.entries(chainSelectors)) {
         supportedChains.push({
             chainSelector: Number(selector),
             names,
-            image,
         });
     }
     return supportedChains;

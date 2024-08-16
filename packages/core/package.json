@@ -40,8 +40,5 @@
   "files": [
     "dist",
     "README.md"
-  ],
-  "dependencies": {
-    "dotenv": "^16.4.5"
-  }
+  ]
 }
