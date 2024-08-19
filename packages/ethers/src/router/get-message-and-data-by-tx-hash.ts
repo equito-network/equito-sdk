@@ -51,32 +51,25 @@ export async function getMessagesByTxHash(
             throw new Error(`Transaction receipt not found for hash: ${txHash}`);
         }
 
-        // Filter logs for the router contract address
-        const routerLogs = receipt.logs.filter(log => log.address.toLowerCase() === routerContractAddress.toLowerCase());
-        if (routerLogs.length === 0) {
-            return [];
-        }
-
         // Create an Interface instance to decode the logs
         const iface = new Interface(routerAbi);
 
-        let messages: MessageAndData[] = [];
-
-        // Decode the logs
-        for (const log of routerLogs) {
-            try {
-                const parsedLog: LogDescription | null = iface.parseLog(log);
-                if (parsedLog && parsedLog.name === 'MessageSendRequested') {
-                    const message = parsedLog.args.message as EquitoMessage;
-                    const messageData = parsedLog.args.messageData as string;
-                    messages.push({ message, messageData });
+        return receipt.logs.flatMap((log) => {
+            // Filter logs for the router contract address
+            if (log.address.toLowerCase() === routerContractAddress.toLowerCase()) {
+                try {
+                    const parsedLog: LogDescription | null = iface.parseLog(log);
+                    if (parsedLog && parsedLog.name === "MessageSendRequested") {
+                        const message: EquitoMessage = parsedLog.args.message;
+                        const messageData: string = parsedLog.args.messageData;
+                        return [{ message, messageData }];
+                    }
+                } catch (parseError) {
+                    throw new Error(`Failed to parse log: ${parseError}`);
                 }
-            } catch (parseError) {
-                throw new Error(`Failed to parse log: ${parseError}`);
             }
-        }
-
-        return messages;
+            return [];
+        });
 
     } catch (error) {
         throw new Error(`Error fetching or decoding log: ${error}`);
