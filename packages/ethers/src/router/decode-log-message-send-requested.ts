@@ -6,16 +6,16 @@ import { routerAbi } from "@equito-sdk/evm";
  * @title decodeLog_MessageSendRequested
  * @description Decodes the `MessageSendRequested` event log from the transaction logs.
  * @dev This function extracts the `message` and `messageData` fields from the event logs, using the specified ABI.
- * 
+ *
  * @param {string} data - The non-indexed data portion of the log.
  * @param {readonly string[]} topics - The array of topics (indexed parameters) for the log.
- * 
- * @returns {{ message: EquitoMessage, messageData: string } } 
+ *
+ * @returns {{ message: EquitoMessage, messageData: string } }
  * - Returns an object containing the decoded `message` and `messageData` if successful, otherwise throws an error.
- * 
- * @throws {Error} 
+ *
+ * @throws {Error}
  * - Throws an error if the log could not be parsed or if the event structure does not match the expected ABI.
- * 
+ *
  * @example
  * const logData = '0x...';  // Replace with actual log data
  * const topics = ['0x...', '0x...'];  // Replace with actual log topics
@@ -27,10 +27,13 @@ import { routerAbi } from "@equito-sdk/evm";
  *     console.error('Failed to decode the log.');
  * }
  */
-export function decodeLog_MessageSendRequested(data: string, topics: readonly string[]): { message: EquitoMessage, messageData: string } {
+export function decodeLog_MessageSendRequested(
+    data: string,
+    topics: readonly string[]
+): { message: EquitoMessage; messageData: string } {
     let logdata = {
         topics,
-        data
+        data,
     };
     let iface = new Interface(routerAbi);
     const parsedLog: LogDescription | null = iface.parseLog(logdata);

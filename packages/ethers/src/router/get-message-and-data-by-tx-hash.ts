@@ -11,22 +11,22 @@ export interface MessageAndData {
  * @title getMessagesByTxHash
  * @description Fetches and decodes the `MessageSendRequested` events from a transaction's logs using its hash.
  * @dev This function retrieves the transaction receipt and parses the logs to extract the relevant event data.
- * 
+ *
  * @param {AbstractProvider} provider - The Ethers.js provider to interact with the blockchain.
  * @param {string} routerContractAddress - The address of the router contract emitting the event.
  * @param {string} txHash - The transaction hash for which the logs are to be retrieved and parsed.
- * 
- * @returns {Promise<MessageAndData[] | null>} 
+ *
+ * @returns {Promise<MessageAndData[] | null>}
  * - Returns an array of objects containing the decoded `message` and `messageData` if successful, otherwise throws an error.
- * 
- * @throws {Error} 
+ *
+ * @throws {Error}
  * - Throws an error if the transaction receipt is not found or if log parsing fails.
- * 
+ *
  * @example
  * const provider = ...;  // Your Ethers.js provider
  * const routerContractAddress = '0x...';  // The router contract address
  * const txHash = '0x...';  // The transaction hash
- * 
+ *
  * getMessageAndDataByTxHash(provider, routerContractAddress, txHash)
  *     .then(results => {
  *         if (results) {
@@ -70,7 +70,6 @@ export async function getMessagesByTxHash(
             }
             return [];
         });
-
     } catch (error) {
         throw new Error(`Error fetching or decoding log: ${error}`);
     }

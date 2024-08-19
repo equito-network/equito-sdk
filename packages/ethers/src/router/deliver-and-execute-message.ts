@@ -57,11 +57,12 @@ export const deliverAndExecuteMessage = async ({
     verifierIndex,
     fee = 0n,
 }: DeliverAndExecuteMessageArgs): Promise<DeliverAndExecuteMessageReturn> => {
-
     const contract = new Contract(routerContract, routerAbi, wallet);
 
-    if (typeof contract.deliverAndExecuteMessage !== 'function') {
-        throw new Error("The deliverAndExecuteMessage method is not defined on the contract");
+    if (typeof contract.deliverAndExecuteMessage !== "function") {
+        throw new Error(
+            "The deliverAndExecuteMessage method is not defined on the contract"
+        );
     }
 
     const txResponse = await contract.deliverAndExecuteMessage(
