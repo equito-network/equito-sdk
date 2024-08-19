@@ -1,17 +1,19 @@
-import { Interface, LogDescription } from "ethers";
-import { EquitoMessage, Hex } from "@equito-sdk/core";
+import { Interface, Log, LogDescription } from "ethers";
+import { EquitoMessage } from "@equito-sdk/core";
 import { routerAbi } from "@equito-sdk/evm";
+import { MessageAndData } from "./get-message-and-data-by-tx-hash";
 
 /**
- * @title decodeLog_MessageSendRequested
- * @description Decodes the `MessageSendRequested` event log from the transaction logs.
- * @dev This function extracts the `message` and `messageData` fields from the event logs, using the specified ABI.
+ * @title decodeLogMessageSendRequested
+ * @description Decodes the `MessageSendRequested` event log from a transaction's logs.
+ * @dev This function extracts the `message` and `messageData` fields from the event logs
+ *      using the specified ABI and returns them as a `MessageAndData` object.
  *
- * @param {string} data - The non-indexed data portion of the log.
- * @param {readonly string[]} topics - The array of topics (indexed parameters) for the log.
+ * @param {Log} log - The log object containing the non-indexed data (`data`) and topics (`topics`)
+ *                    from the transaction log.
  *
- * @returns {{ message: EquitoMessage, messageData: string } }
- * - Returns an object containing the decoded `message` and `messageData` if successful, otherwise throws an error.
+ * @returns {MessageAndData}
+ * - Returns an object containing `message` and `messageData` if successful.
  *
  * @throws {Error}
  * - Throws an error if the log could not be parsed or if the event structure does not match the expected ABI.
@@ -19,31 +21,27 @@ import { routerAbi } from "@equito-sdk/evm";
  * @example
  * const logData = '0x...';  // Replace with actual log data
  * const topics = ['0x...', '0x...'];  // Replace with actual log topics
- * const result = decodeLog_MessageSendRequested(logData, topics);
- * if (result) {
- *     console.log('Decoded Message:', result.message);
- *     console.log('Decoded Message Data:', result.messageData);
- * } else {
- *     console.error('Failed to decode the log.');
- * }
+ * const result = decodeLogMessageSendRequested({ data: logData, topics });
+ * console.log('Decoded Message:', result.message);
+ * console.log('Decoded Message Data:', result.messageData);
  */
-export function decodeLog_MessageSendRequested(
-    data: string,
-    topics: readonly string[]
-): { message: EquitoMessage; messageData: string } {
-    let logdata = {
-        topics,
-        data,
-    };
-    let iface = new Interface(routerAbi);
-    const parsedLog: LogDescription | null = iface.parseLog(logdata);
+export function decodeLogMessageSendRequested({
+  data,
+  topics,
+}: Log): MessageAndData {
+  let logdata = {
+    topics,
+    data,
+  };
+  let iface = new Interface(routerAbi);
+  const parsedLog: LogDescription | null = iface.parseLog(logdata);
 
-    if (parsedLog) {
-        const message: EquitoMessage = parsedLog.args.message as EquitoMessage;
-        const messageData: string = parsedLog.args.messageData as string;
+  if (parsedLog && parsedLog.name === "MessageSendRequested") {
+    const message: EquitoMessage = parsedLog.args.message as EquitoMessage;
+    const messageData: string = parsedLog.args.messageData as string;
 
-        return { message, messageData };
-    } else {
-        throw new Error("Log could not be parsed");
-    }
+    return { message, messageData };
+  } else {
+    throw new Error("Log could not be parsed");
+  }
 }
