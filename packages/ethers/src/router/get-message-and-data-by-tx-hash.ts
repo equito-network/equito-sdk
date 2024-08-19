@@ -1,12 +1,6 @@
-import { AbstractProvider, LogDescription, Interface } from "ethers";
-import { EquitoMessage } from "@equito-sdk/core";
-import { routerAbi } from "@equito-sdk/evm";
+import { AbstractProvider } from "ethers";
+import { EquitoMessageWithData } from "@equito-sdk/core";
 import { decodeLogMessageSendRequested } from "./decode-log-message-send-requested";
-
-export interface MessageAndData {
-  message: EquitoMessage;
-  messageData: string;
-}
 
 /**
  * @title getMessagesByTxHash
@@ -17,8 +11,7 @@ export interface MessageAndData {
  * @param {string} routerContractAddress - The address of the router contract emitting the event.
  * @param {string} txHash - The transaction hash for which the logs are to be retrieved and parsed.
  *
- * @returns {Promise<MessageAndData[]>}
- * - Returns an array of objects containing the decoded `message` and `messageData` if successful.
+ * @returns {Promise<EquitoMessageWithData[]>} - Returns an array of `EquitoMessageWithData` objects if successful.
  *
  * @throws {Error}
  * - Throws an error if the transaction receipt is not found.
@@ -43,7 +36,7 @@ export async function getMessagesByTxHash(
   provider: AbstractProvider,
   routerContractAddress: string,
   txHash: string
-): Promise<MessageAndData[]> {
+): Promise<EquitoMessageWithData[]> {
   const receipt = await provider.getTransactionReceipt(txHash);
   if (!receipt) {
     throw new Error(`Transaction receipt not found for hash: ${txHash}`);

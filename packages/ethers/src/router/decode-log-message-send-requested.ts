@@ -1,19 +1,17 @@
 import { Interface, Log, LogDescription } from "ethers";
-import { EquitoMessage } from "@equito-sdk/core";
+import { EquitoMessage, EquitoMessageWithData, Hex } from "@equito-sdk/core";
 import { routerAbi } from "@equito-sdk/evm";
-import { MessageAndData } from "./get-message-and-data-by-tx-hash";
 
 /**
  * @title decodeLogMessageSendRequested
  * @description Decodes the `MessageSendRequested` event log from a transaction's logs.
  * @dev This function extracts the `message` and `messageData` fields from the event logs
- *      using the specified ABI and returns them as a `MessageAndData` object.
+ *      using the specified ABI and returns them as a `EquitoMessageWithData` object.
  *
  * @param {Log} log - The log object containing the non-indexed data (`data`) and topics (`topics`)
  *                    from the transaction log.
  *
- * @returns {MessageAndData}
- * - Returns an object containing `message` and `messageData` if successful.
+ * @returns {EquitoMessageWithData} - Returns object `EquitoMessageWithData`.
  *
  * @throws {Error}
  * - Throws an error if the log could not be parsed or if the event structure does not match the expected ABI.
@@ -28,7 +26,7 @@ import { MessageAndData } from "./get-message-and-data-by-tx-hash";
 export function decodeLogMessageSendRequested({
   data,
   topics,
-}: Log): MessageAndData {
+}: Log): EquitoMessageWithData {
   let logdata = {
     topics,
     data,
@@ -38,7 +36,7 @@ export function decodeLogMessageSendRequested({
 
   if (parsedLog && parsedLog.name === "MessageSendRequested") {
     const message: EquitoMessage = parsedLog.args.message as EquitoMessage;
-    const messageData: string = parsedLog.args.messageData as string;
+    const messageData: Hex = parsedLog.args.messageData as Hex;
 
     return { message, messageData };
   } else {
