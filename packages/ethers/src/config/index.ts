@@ -1,5 +1,4 @@
 import { JsonRpcProvider, WebSocketProvider, AbstractProvider } from 'ethers';
-import { readFileSync } from 'fs';
 
 /**
  * @title ChainSelector Configuration
@@ -7,7 +6,7 @@ import { readFileSync } from 'fs';
  * @property chainSelector - The unique identifier for the blockchain network.
  * @property endpointUrl - The URL endpoint for accessing the blockchain network.
  */
-interface ChainConfig {
+export interface ChainConfig {
     chainSelector: number;
     endpointUrl: string;
 }
@@ -17,7 +16,7 @@ interface ChainConfig {
  * @description Represents the overall configuration containing multiple network configurations.
  * @property chains - An array of ChainConfig objects, each representing a different blockchain network configuration.
  */
-interface Config {
+export interface Config {
     chains: ChainConfig[];
 }
 
@@ -28,10 +27,9 @@ interface Config {
  * @property providers - A map that caches providers for different chain selectors.
  * @property config - The configuration object that contains chain configurations.
  * 
- * @method constructor(configPath: string) - Initializes a new instance of the MultiChainClient class and loads the configuration from the specified path.
+ * @method constructor(config: Config) - Initializes a new instance of the MultiChainClient class.
  * @method getProvider(chainSelector: number): Promise<AbstractProvider> - Retrieves the provider for the specified chain selector, ensuring it is connected. Recreates the provider if it is disconnected.
  * 
- * @private method loadConfig(configPath: string): Config - Loads the configuration from a JSON file.
  * @private method getEndpointUrl(chainSelector: number): string - Gets the endpoint URL for the specified chain selector.
  * @private method isProviderConnected(provider: AbstractProvider): Promise<boolean> - Checks if the provider is connected by attempting to fetch the latest block number.
  * @private method createProvider(chainSelector: number): AbstractProvider - Creates a new provider based on the endpoint URL.
@@ -43,27 +41,11 @@ export class MultiChainClient {
     /**
      * @title Constructor
      * @description Initializes a new instance of the MultiChainClient class.
-     * @param configPath - The path to the configuration file.
+     * @param config - The path to the configuration file.
      */
-    constructor(configPath: string) {
+    constructor(config: Config) {
         this.providers = new Map<number, AbstractProvider>();
-        this.config = this.loadConfig(configPath);
-    }
-
-    /**
-     * @title Load Configuration
-     * @description Loads the configuration from a JSON file.
-     * @param configPath - The path to the configuration file.
-     * @returns The parsed configuration object.
-     * @throws Will throw an error if the configuration file cannot be loaded or parsed.
-     */
-    private loadConfig(configPath: string): Config {
-        try {
-            return JSON.parse(readFileSync(configPath, 'utf-8'));
-        } catch (error) {
-            console.error(`Error loading configuration from ${configPath}: ${error}`);
-            throw new Error('Failed to load configuration');
-        }
+        this.config = config;
     }
 
     /**
