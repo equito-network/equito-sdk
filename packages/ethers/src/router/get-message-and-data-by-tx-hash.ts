@@ -3,20 +3,18 @@ import { EquitoMessageWithData } from "@equito-sdk/core";
 import { decodeLogMessageSendRequested } from "./decode-log-message-send-requested";
 
 /**
- * @title getMessagesByTxHash
- * @description Fetches and decodes the `MessageSendRequested` events from a transaction's logs using its hash.
- * @dev This function retrieves the transaction receipt and parses the logs to extract the relevant event data.
+ * Fetches and decodes all the `MessageSendRequested` events of a transaction, given its hash.
  *
- * @param {AbstractProvider} provider - The Ethers.js provider to interact with the blockchain.
- * @param {string} routerContractAddress - The address of the router contract emitting the event.
- * @param {string} txHash - The transaction hash for which the logs are to be retrieved and parsed.
+ * @param {AbstractProvider} provider {@link AbstractProvider} The Ethers.js provider to interact with the blockchain.
+ * @param {string} routerContractAddress The address of the router contract emitting the event.
+ * @param {string} txHash The transaction hash for which the logs are to be retrieved and parsed.
  *
- * @returns {Promise<EquitoMessageWithData[]>} - Returns an array of `EquitoMessageWithData` objects if successful.
+ * @returns A {@link Promise<EquitoMessageWithData[]>} that resolves to the decoded messages and message data.
  *
- * @throws {Error}
- * - Throws an error if the transaction receipt is not found.
+ * @throws Throws an error if the transaction receipt is not found.
  *
  * @example
+ * ```
  * const provider = ...;  // Your Ethers.js provider
  * const routerContractAddress = '0x...';  // The router contract address
  * const txHash = '0x...';  // The transaction hash
@@ -31,6 +29,7 @@ import { decodeLogMessageSendRequested } from "./decode-log-message-send-request
  *     .catch(error => {
  *         console.error('Error:', error);
  *     });
+ * ```
  */
 export async function getMessagesByTxHash(
   provider: AbstractProvider,
