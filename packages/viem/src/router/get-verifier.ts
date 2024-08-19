@@ -1,6 +1,6 @@
-import { EquitoAddress, Hex } from "@equito-sdk/core";
+import { Hex } from "@equito-sdk/core";
 import { routerAbi } from "@equito-sdk/evm";
-import { PublicClient, encodeAbiParameters, parseAbiParameters } from "viem";
+import { PublicClient } from "viem";
 
 /**
  * The arguments for the getVerifier function.

@@ -1,43 +1,29 @@
 import { type Hex } from "./misc";
 
 /**
- * @title EquitoAddress
- * @description Represents an address in the Equito protocol, consisting of two parts: `lower` and `upper`.
- *
- * @property {Hex} lower - The lower part of the address.
- * @property {Hex} upper - The upper part of the address.
+ * Composes an address from two parts, `lower` and `upper`, each represented as a 32-byte hexadecimal string.
+ * This type is used in networks where basic types are 32 bytes long, for example EVM-based networks.
  */
-export type EquitoAddress = {
+export type CompositeAddress = {
   lower: Hex;
   upper: Hex;
 };
 
 /**
- * @title  EquitoMessage
- * @description Represents a message structure used in the Equito protocol, including details about the source and destination chains, the sender and receiver addresses, and associated data.
- *
- * @property {bigint} blockNumber - The block number, at the source chain, at which the message was created.
- * @property {bigint} sourceChainSelector - The identifier for the source chain where the message originated.
- * @property {EquitoAddress} sender - The address of the sender on the source chain.
- * @property {bigint} destinationChainSelector - The identifier for the destination chain where the message is intended.
- * @property {EquitoAddress} receiver - The address of the receiver on the destination chain.
- * @property {Hex} hashedData - The hashed data associated with the message.
+ * The ubiquitous message structure for cross-chain communication in the Equito protocol.
+ * Includes details about the source and destination chains, the sender and receiver applications, and validation data.
  */
 export type EquitoMessage = {
   blockNumber: bigint;
   sourceChainSelector: bigint;
-  sender: EquitoAddress;
+  sender: CompositeAddress;
   destinationChainSelector: bigint;
-  receiver: EquitoAddress;
+  receiver: CompositeAddress;
   hashedData: Hex;
 };
 
 /**
- * @title  EquitoMessageWithData
- * @description Represents a complete message along with its associated data, used in the Equito protocol.
- *
- * @property {EquitoMessage} message - The core message structure containing chain and address details.
- * @property {Hex} messageData - Additional data associated with the message, typically in a hashed format.
+ * An {@link EquitoMessage} object paired with the actual data it carries.
  */
 export type EquitoMessageWithData = {
   message: EquitoMessage;
