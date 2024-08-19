@@ -58,9 +58,13 @@ export class MultiChainClient {
      * @throws Will throw an error if the chain selector is not found in the configuration.
      */
     private getEndpointUrl(chainSelector: number): string {
-        const chainConfig = this.config.chains.find(chain => chain.chainSelector === chainSelector);
+        const chainConfig = this.config.chains.find(
+            (chain) => chain.chainSelector === chainSelector
+        );
         if (!chainConfig) {
-            throw new Error(`Endpoint URL not found for chain selector: ${chainSelector}`);
+            throw new Error(
+                `Endpoint URL not found for chain selector: ${chainSelector}`
+            );
         }
         return chainConfig.endpointUrl;
     }
@@ -71,7 +75,9 @@ export class MultiChainClient {
      * @param provider {@link AbstractProvider} - The provider to check.
      * @returns {Promise<boolean>} A promise that resolves to true if the provider is connected, otherwise false.
      */
-    private async isProviderConnected(provider: AbstractProvider): Promise<boolean> {
+    private async isProviderConnected(
+        provider: AbstractProvider
+    ): Promise<boolean> {
         try {
             await provider.getBlockNumber();
             return true;
@@ -91,14 +97,18 @@ export class MultiChainClient {
      */
     private createProvider(chainSelector: number): AbstractProvider {
         const endpointUrl = this.getEndpointUrl(chainSelector);
-        if (endpointUrl.startsWith('http')) {
+        if (endpointUrl.startsWith("http")) {
             console.log(`Creating HTTP provider for chain selector ${chainSelector}`);
             return new JsonRpcProvider(endpointUrl);
-        } else if (endpointUrl.startsWith('ws')) {
-            console.log(`Creating WebSocket provider for chain selector ${chainSelector}`);
+        } else if (endpointUrl.startsWith("ws")) {
+            console.log(
+                `Creating WebSocket provider for chain selector ${chainSelector}`
+            );
             return new WebSocketProvider(endpointUrl);
         } else {
-            throw new Error(`Unsupported protocol in endpoint URL for chain selector ${chainSelector}: ${endpointUrl}`);
+            throw new Error(
+                `Unsupported protocol in endpoint URL for chain selector ${chainSelector}: ${endpointUrl}`
+            );
         }
     }
 
@@ -117,10 +127,14 @@ export class MultiChainClient {
             if (isConnected) {
                 return provider;
             } else {
-                console.warn(`Provider for chain selector ${chainSelector} is disconnected, recreating...`);
+                console.warn(
+                    `Provider for chain selector ${chainSelector} is disconnected, recreating...`
+                );
             }
         } else {
-            console.log(`No cached provider for chain selector ${chainSelector}, creating new provider...`);
+            console.log(
+                `No cached provider for chain selector ${chainSelector}, creating new provider...`
+            );
         }
 
         provider = this.createProvider(chainSelector);

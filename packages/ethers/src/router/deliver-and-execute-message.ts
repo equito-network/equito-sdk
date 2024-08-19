@@ -1,5 +1,5 @@
 import { routerAbi } from "@equito-sdk/evm";
-import { Contract, Wallet } from "ethers";
+import { Contract, TransactionReceipt, Wallet } from "ethers";
 import { Hex, EquitoMessage } from "@equito-sdk/core";
 
 /**
@@ -13,7 +13,7 @@ export type DeliverAndExecuteMessageArgs = {
     /**
      * The destination chain selector that the message will be routed to.
      */
-    destinationChainSelector: number;
+    destinationChainSelector: bigint;
     /**
      * The router contract in {@link Hex} format.
      */
@@ -40,7 +40,7 @@ export type DeliverAndExecuteMessageArgs = {
     fee?: bigint;
 };
 
-export type DeliverAndExecuteMessageReturn = Hex;
+export type DeliverAndExecuteMessageReturn = TransactionReceipt;
 
 /**
  * Routes a message to a destination chain and executes it.
@@ -57,11 +57,12 @@ export const deliverAndExecuteMessage = async ({
     verifierIndex,
     fee = 0n,
 }: DeliverAndExecuteMessageArgs): Promise<DeliverAndExecuteMessageReturn> => {
-
     const contract = new Contract(routerContract, routerAbi, wallet);
 
-    if (typeof contract.deliverAndExecuteMessage !== 'function') {
-        throw new Error("The deliverAndExecuteMessage method is not defined on the contract");
+    if (typeof contract.deliverAndExecuteMessage !== "function") {
+        throw new Error(
+            "The deliverAndExecuteMessage method is not defined on the contract"
+        );
     }
 
     const txResponse = await contract.deliverAndExecuteMessage(
@@ -75,5 +76,5 @@ export const deliverAndExecuteMessage = async ({
     );
 
     const receipt = await txResponse.wait();
-    return receipt.transactionHash as Hex;
+    return receipt;
 };
