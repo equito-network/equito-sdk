@@ -1,16 +1,16 @@
 export type Hex = `0x${string}`;
 
 /**
- * @interface EquitoChain
- * @description Represents a blockchain configuration used within the Equito ecosystem.
- *
- * @property {number} chainSelector - A unique numeric identifier for the blockchain.
- * Typically used to differentiate between different blockchains or network configurations.
- *
- * @property {string[]} names - An array of strings representing different names or aliases
- * for the blockchain. This can include common names, abbreviations, or other recognized identifiers.
+ * Represents a blockchain supported by the Equito protocol.
  */
 export interface EquitoChain {
+  /**
+   * The unique identifier for the blockchain network in the Equito Protocol.
+   */
   chainSelector: number;
+  /**
+   * Different names or aliases for the blockchain.
+   * This can include common names, abbreviations, or other recognized identifiers.
+   */
   names: string[];
 }
