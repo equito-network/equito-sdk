@@ -3,8 +3,8 @@ import { EquitoChain } from "../types";
 
 // Assert correct type for chain-selectors.json file
 const chainSelectors = chainSelectorsJson as Record<
-    string,
-    { names: string[]; }
+  string,
+  { names: string[] }
 >;
 /**
  * @title getChainSelectorByName
@@ -12,31 +12,30 @@ const chainSelectors = chainSelectorsJson as Record<
  * @param {string} name - The name of the chain to look up.
  * @returns {number} - The chain selector associated with the given chain name.
  * @throws {Error} - Throws an error if the provided chain name is not supported.
- * 
+ *
  * @example
  * const selector = getChainSelectorByName("ethereum");
  * console.log(selector); // Outputs: 1
  */
 export function getChainSelectorByName(name: string): number {
-    const lowerCaseName = name.toLowerCase();
+  const lowerCaseName = name.toLowerCase();
 
-    for (const [selector, { names }] of Object.entries(chainSelectors)) {
-        if (names.includes(lowerCaseName)) {
-            return Number(selector);
-        }
+  for (const [selector, { names }] of Object.entries(chainSelectors)) {
+    if (names.includes(lowerCaseName)) {
+      return Number(selector);
     }
+  }
 
-    throw new Error(`Invalid or unsupported Chain Name: ${name}`);
+  throw new Error(`Invalid or unsupported Chain Name: ${name}`);
 }
-
 
 /**
  * @title getAllSupportedChains
  * @description Retrieves all supported chains with their respective chain selector, name, and image path.
- * 
+ *
  * @returns {EquitoChain []}
  * - An array of objects, each containing the chain selector, names, and image path for a supported chain.
- * 
+ *
  * @example
  * const chains = getAllSupportedChains();
  * console.log(chains);
@@ -47,14 +46,14 @@ export function getChainSelectorByName(name: string): number {
  * // ]
  */
 export function getAllSupportedChains(): EquitoChain[] {
-    const supportedChains = [];
-    for (const [selector, { names }] of Object.entries(chainSelectors)) {
-        supportedChains.push({
-            chainSelector: Number(selector),
-            names,
-        });
-    }
-    return supportedChains;
+  const supportedChains = [];
+  for (const [selector, { names }] of Object.entries(chainSelectors)) {
+    supportedChains.push({
+      chainSelector: Number(selector),
+      names,
+    });
+  }
+  return supportedChains;
 }
 
 /**
@@ -64,11 +63,11 @@ export function getAllSupportedChains(): EquitoChain[] {
  * @throws {Error} - Throws an error if the chain selector is invalid or not found.
  */
 export function getByChainSelector(chainSelector: number): EquitoChain {
-    const chainData = chainSelectors[chainSelector];
+  const chainData = chainSelectors[chainSelector];
 
-    if (chainData) {
-        return { chainSelector, ...chainData };
-    }
+  if (chainData) {
+    return { chainSelector, ...chainData };
+  }
 
-    throw new Error(`Invalid or unsupported Chain Selector: ${chainSelector}`);
+  throw new Error(`Invalid or unsupported Chain Selector: ${chainSelector}`);
 }
