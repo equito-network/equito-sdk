@@ -8,7 +8,7 @@ import { routerAbi } from "@equito-sdk/evm";
  * using the specified ABI.
  *
  * @param {Log<bigint, number, false>[]} logs {@link Log<bigint, number, false>[]} The log object.
- * @returns A list of {@link EquitoMessageWithData[]} object containing the decoded message and message data if exist, otherwise undefined.
+ * @returns A list of {@link EquitoMessageWithData[]} object containing the decoded message and message data.
  *
  *
  * @example
