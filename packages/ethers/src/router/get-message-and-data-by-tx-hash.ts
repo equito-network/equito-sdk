@@ -43,7 +43,7 @@ export async function getMessagesByTxHash(
 
   return receipt.logs.flatMap((log) => {
     if (log.address.toLowerCase() === routerContractAddress.toLowerCase()) {
-      return [decodeLogMessageSendRequested(log)];
+      return decodeLogMessageSendRequested(log) || [];
     }
     return [];
   });

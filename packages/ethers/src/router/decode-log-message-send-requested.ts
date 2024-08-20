@@ -9,9 +9,8 @@ import { routerAbi } from "@equito-sdk/evm";
  *
  * @param {Log} log {@link Log} The log object containing the non-indexed data (`data`)
  * and topics (`topics`) from the transaction log.
- * @returns A {@link EquitoMessageWithData} object containing the decoded message and message data.
+ * @returns A {@link EquitoMessageWithData} object containing the decoded message and message data if exists.
  *
- * @throws Throws an error if the log could not be parsed, for example if it doesn't match the expected ABI.
  *
  * @example
  * ```
@@ -25,12 +24,12 @@ import { routerAbi } from "@equito-sdk/evm";
 export function decodeLogMessageSendRequested({
   data,
   topics,
-}: Log): EquitoMessageWithData {
-  let logdata = {
+}: Log): EquitoMessageWithData | undefined {
+  const logdata = {
     topics,
     data,
   };
-  let iface = new Interface(routerAbi);
+  const iface = new Interface(routerAbi);
   const parsedLog: LogDescription | null = iface.parseLog(logdata);
 
   if (parsedLog && parsedLog.name === "MessageSendRequested") {
@@ -38,7 +37,5 @@ export function decodeLogMessageSendRequested({
     const messageData: Hex = parsedLog.args.messageData as Hex;
 
     return { message, messageData };
-  } else {
-    throw new Error("Log could not be parsed");
   }
 }
