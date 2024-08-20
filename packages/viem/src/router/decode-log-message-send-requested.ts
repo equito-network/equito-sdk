@@ -10,6 +10,7 @@ import { routerAbi } from "@equito-sdk/evm";
  * @param {Log} log {@link Log} The log object.
  * @returns A {@link EquitoMessageWithData} object containing the decoded message and message data if exists.
  *
+ * @throws Throws an error if the data & topics lengths to not conform to the event on the ABI.
  *
  * @example
  * ```
@@ -23,16 +24,20 @@ export function decodeLogMessageSendRequested({
   topics,
   data,
 }: Log): EquitoMessageWithData | undefined {
-  const { args, eventName } = decodeEventLog({
-    abi: routerAbi,
-    data,
-    topics,
-  });
+  try {
+    const { args, eventName } = decodeEventLog({
+      abi: routerAbi,
+      data,
+      topics,
+    });
 
-  if (eventName === "MessageSendRequested") {
-    return {
-      message: args.message,
-      messageData: args.messageData,
-    };
+    if (eventName === "MessageSendRequested") {
+      return {
+        message: args.message,
+        messageData: args.messageData,
+      };
+    }
+  } catch {
+    throw new Error("Failed to decode log message send requested");
   }
 }
