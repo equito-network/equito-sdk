@@ -58,11 +58,12 @@ export async function getMessagesByTxHash({
       hash: txHash,
     });
 
-    return decodeLogMessageSendRequested(
-      logs.filter(
-        ({ address }) => address.toLowerCase() === routerContract.toLowerCase()
-      )
-    );
+    return logs.flatMap((log) => {
+      if (log.address.toLowerCase() === routerContract.toLowerCase()) {
+        return decodeLogMessageSendRequested(log) || [];
+      }
+      return [];
+    });
   } catch (error) {
     throw new Error(
       `Unable to get messages for the transaction with hash: ${txHash}`

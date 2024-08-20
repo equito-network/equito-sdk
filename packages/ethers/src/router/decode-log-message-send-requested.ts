@@ -9,7 +9,7 @@ import { routerAbi } from "@equito-sdk/evm";
  *
  * @param {Log} log {@link Log} The log object containing the non-indexed data (`data`)
  * and topics (`topics`) from the transaction log.
- * @returns A {@link EquitoMessageWithData} object containing the decoded message and message data if exist, otherwise undefined.
+ * @returns A {@link EquitoMessageWithData} object containing the decoded message and message data if exists.
  *
  *
  * @example
