@@ -1,6 +1,6 @@
 {
   "name": "@equito-sdk/client",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": "Equito Network",
   "description": "Wrappers around JSONRPC calls that flow from an application to an Equito node.",
   "homepage": "https://github.com/equito-network/equito-sdk/tree/main/packages/client#readme",
