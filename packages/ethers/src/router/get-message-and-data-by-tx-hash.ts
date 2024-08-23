@@ -9,7 +9,7 @@ import { decodeLogMessageSendRequested } from "./decode-log-message-send-request
  * @param {string} routerContractAddress The address of the router contract emitting the event.
  * @param {string} txHash The transaction hash for which the logs are to be retrieved and parsed.
  *
- * @returns A {@link Promise<EquitoMessageWithData[]>} that resolves to the decoded messages and message data.
+ * @returns A promise that resolves to the decoded messages and message data.
  *
  * @throws Throws an error if the transaction receipt is not found.
  *

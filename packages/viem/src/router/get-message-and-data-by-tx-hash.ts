@@ -26,7 +26,7 @@ export type GetMessagesByTxHashArgs = {
  *
  * @param {GetMessagesByTxHashArgs} args {@link GetMessagesByTxHashArgs}
  *
- * @returns A {@link Promise<EquitoMessageWithData[]>} that resolves to the decoded messages and message data.
+ * @returns A promise that resolves to the decoded messages and message data.
  *
  * @throws Throws an error if the transaction receipt is not found.
  *
