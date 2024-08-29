@@ -42,7 +42,7 @@ export class MultiChainClient {
   /**
    * Creates a {@link MultiChainClient} instance.
    *
-   * @param config {@link Config} - The path to the configuration file.
+   * @param config {@link Config} - The configuration file, containing information on the networks and their endpoints.
    */
   constructor(config: Config) {
     this.providers = new Map<number, AbstractProvider>();
